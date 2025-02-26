@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "nodemon --inspect src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/codebyCtrl-C-V/DATN#readme",
   "dependencies": {
+    "datn": "file:",
     "express": "^4.21.2",
     "express-handlebars": "^8.0.1",
     "expressjs": "^1.0.1",

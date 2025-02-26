@@ -13,6 +13,10 @@ app.engine('hbs', exphbs.engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
+//Kết nối cơ sở dữ liệu
+const db = require('./config/database');
+db.Sequelize;
+
 // Middleware xử lý file tĩnh
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -23,8 +27,10 @@ app.use(express.json());
 // Import routes
 const indexRoutes = require('./routes/index');
 const productRoutes = require('./routes/product');
+const authRoutes = require('./routes/auth');
 app.use('/', indexRoutes);
 app.use('/product', productRoutes);
+app.use('/auth', authRoutes);
 
 // Khởi động server
 const PORT = process.env.PORT || 3000;
