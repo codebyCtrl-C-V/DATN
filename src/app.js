@@ -21,16 +21,31 @@ db.Sequelize;
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware xử lý dữ liệu từ form
-app.use(express.urlencoded({ extended: false }));
+const cookieParser = require("cookie-parser");
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
+
+//Kiểm tra user đã đăng nhập chưa
+const { checkLoginMiddleware } = require('./middleware/auth');
+app.use(checkLoginMiddleware);
 
 // Import routes
 const indexRoutes = require('./routes/index');
 const productRoutes = require('./routes/product');
-const authRoutes = require('./routes/auth');
+const loginRoutes = require('./routes/login');
+const registerRoutes = require('./routes/register');
+const logoutRoutes = require('./routes/logout');
+const profileRoutes = require('./routes/profile');
+
 app.use('/', indexRoutes);
 app.use('/product', productRoutes);
-app.use('/auth', authRoutes);
+app.use('/login', loginRoutes);
+app.use('/register', registerRoutes);
+app.use('/logout', logoutRoutes);
+app.use('/profile', profileRoutes);
+
+
 
 // Khởi động server
 const PORT = process.env.PORT || 3000;

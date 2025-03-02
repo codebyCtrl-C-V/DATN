@@ -1,0 +1,67 @@
+<h3 class="text-center mb-4" style="margin-top: 20px;">Thông tin tài khoản</h3>
+
+<div class="profile-container">
+    {{#if successMessage}}
+    <div class="alert alert-success">{{successMessage}}</div>
+    {{/if}}
+
+    <div class="mb-3 row align-items-center">
+        <h6 class="col-sm-2 mb-0">
+            <label for="email" class="col-form-label">Email: </label>
+        </h6>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" disabled>
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <h6 class="col-sm-2 mb-0">
+            <label for="name" class="col-form-label">Họ tên: </label>
+        </h6>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" value="{{user.name}}" disabled>
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <h6 class="col-sm-2 mb-0">
+            <label for="phone" class="col-form-label">Số điện thoại: </label>
+        </h6>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="phone" name="phone" value="{{user.phone}}" disabled>
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <h6 class="col-sm-2 mb-0">
+            <label for="address" class="col-form-label">Địa chỉ: </label>
+        </h6>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="address" name="address" value="{{user.address}}" disabled>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="/profile/update" class="btn btn-warning">Sửa thông tin</a>
+        <a href="/profile/change-password" class="btn btn-danger">Đổi mật khẩu</a>
+    </div>
+</div>
+
+<style>
+    .profile-container {
+        margin: 20px auto;
+        width: 50%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #feffef;
+    }
+
+    .profile-container .form-control {
+        background-color: #fff;
+    }
+</style>
+
+<script>
+    // Ẩn thông báo sau 5 giây
+    setTimeout(() => {
+        document.querySelector('.alert-success')?.remove();
+    }, 5000);
+</script>

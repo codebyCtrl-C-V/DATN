@@ -1,0 +1,55 @@
+<h3 class="text-center mb-4" style="margin-top: 20px;">Thông tin đăng ký</h3> 
+
+<form action="/register" method="POST" class="register-form">
+    <div class="mb-3 row align-items-center">
+        <h6 class="col-sm-2 mb-0">
+            <label for="name" class="col-form-label">Họ tên</label>
+        </h6>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" required placeholder="Tên của bạn" value="{{name}}">
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <h6 class="col-sm-2 mb-0">
+            <label for="email" class="col-form-label">Email</label>
+        </h6>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" name="email" required placeholder="Email của bạn" value="{{email}}" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <h6 class="col-sm-2 mb-0">
+            <label for="password" class="col-form-label">Mật khẩu</label>
+        </h6>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="password" name="password" required placeholder="Mật khẩu">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <h6 class="col-sm-2 mb-0">
+            <label for="repassword" class="col-form-label">Nhập lại mật khẩu</label>
+        </h6>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Nhập lại mật khẩu">
+        </div>
+    </div>
+    {{#if error}}
+    <div class="alert alert-danger text-center">{{error}}</div>
+    {{/if}}
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Đăng ký</button>
+    </div>
+    <p>Đã có tài khoản? <a href="/login">Đăng nhập</a></p>
+</form>
+
+<style>
+    .register-form {
+        margin: 20px auto;
+        width: 50%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #feffef;
+    }
+</style>
+

@@ -5,7 +5,7 @@
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
                     <a href="/">
-                        <img src="images/logo.png" alt="logo" class="img-fluid">
+                        <img src="/images/logo.png" alt="logo" class="img-fluid">
                     </a>
                 </div>
             </div>
@@ -39,18 +39,34 @@
                 class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
                 <div class="support-box text-end d-none d-xl-block">
                     <span class="fs-6 text-muted">For Support?</span>
-                    <h5 class="mb-0">+980-34984089</h5>
+                    <h5 class="mb-0">0944538620</h5>
                 </div>
 
                 <ul class="d-flex justify-content-end list-unstyled m-0">
-                    <li>
-                        <a href="/auth/login" class="rounded-circle bg-light p-2 mx-1">
-                            <svg width="36" height="36" viewBox="0 0 24 24">
-                                <use xlink:href="#user"></use>
-                            </svg>
-                        </a>
-                    </li>
-                   
+                    {{#if user}}
+                    <div class="nav-link dropdown-toggle d-flex align-items-center" id="userDropdown"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #000;">
+                        <svg width="36" height="36" viewBox="0 0 24 24">
+                            <use xlink:href="#user"></use>
+                        </svg>
+                        <span class="ms-2">{{user.name}}</span>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="/profile" style="color: #000;">Thông tin tài khoản</a></li>
+                        <li><a class="dropdown-item" href="/orders" style="color: #000;">Đơn hàng</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/logout" style="color: #d61b1b;">Đăng xuất</a></li>
+                    </ul>
+                    {{else}}
+                    <a href="/login" class="rounded-circle bg-light p-2 mx-1">
+                        <svg width="36" height="36" viewBox="0 0 24 24">
+                            <use xlink:href="#user"></use>
+                        </svg>
+                    </a>
+                    {{/if}}
+
                     <li class="d-lg-none">
                         <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
