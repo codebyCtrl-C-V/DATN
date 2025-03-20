@@ -30,6 +30,10 @@ app.use(cookieParser());
 const { checkLoginMiddleware } = require('./middleware/auth');
 app.use(checkLoginMiddleware);
 
+//Load danh mục sản phẩm
+const getCategories = require('./middleware/getCategories');
+app.use(getCategories);
+
 // Import routes
 const indexRoutes = require('./routes/index');
 const productRoutes = require('./routes/product');

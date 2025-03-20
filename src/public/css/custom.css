@@ -1,0 +1,22 @@
+/* Home */
+/* product item */ 
+
+.product-item figure img {
+    width: 210px;
+    height: 180px;
+    object-fit: contain;
+}
+
+.product-item h3 {
+    min-height: 50px;
+}
+
+.product-item .price {
+  font-size: 15px;
+  display: flex;
+  gap: 8px;
+}
+
+.product-item .price del {
+  opacity: 0.5;
+}
