@@ -1,0 +1,55 @@
+<div class="container my-2">
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        src="{{product.image}}"
+        class="img-fluid rounded"
+        alt="{{product.name}}"
+        style="width:500px; height:500px; object-fit:contain"
+      />
+    </div>
+    <div class="col-md-6">
+      <h2 class="fw-bold">{{product.name}}</h2>
+      <p class="text-muted">{{product.description}}</p>
+      <p class="fw-bold h4" style="color: black;">Giá: {{product.price}} VND</p>
+      <p>Còn hàng: <span class="badge bg-success">{{product.stock}}</span></p>
+      <div class="d-flex align-items-center justify-content-left">
+        <div class="input-group product-qty" style="width: 125px; margin-right:10px">
+          <span class="input-group-btn">
+            <button
+              type="button"
+              class="quantity-left-minus btn btn-danger btn-number"
+              data-type="minus"
+            >
+              <svg width="16" height="16">
+                <use xlink:href="#minus"></use>
+              </svg>
+            </button>
+          </span>
+          <input
+            type="text"
+            id="quantity"
+            name="quantity"
+            class="form-control input-number"
+            value="1"
+            style="text-align: center;"
+          />
+          <span class="input-group-btn">
+            <button
+              type="button"
+              class="quantity-right-plus btn btn-success btn-number"
+              data-type="plus"
+            >
+              <svg width="16" height="16">
+                <use xlink:href="#plus"></use>
+              </svg>
+            </button>
+          </span>
+        </div>
+
+        <button class="btn btn-success">Thêm vào giỏ</button>
+      </div>
+
+    </div>
+  </div>
+</div>

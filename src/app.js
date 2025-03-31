@@ -3,12 +3,18 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const app = express();
 
+// Import helper
+const hbsHelpers = require("handlebars-helpers"); 
+const multiHelpers = hbsHelpers();
+require('./helpers/handlebars');
+
 // Cấu hình Handlebars
 app.engine('hbs', exphbs.engine({
     extname: 'hbs',
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'views', 'layouts'),
-    partialsDir: path.join(__dirname, 'views', 'partials')
+    partialsDir: path.join(__dirname, 'views', 'partials'),
+    helpers: multiHelpers
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
@@ -41,6 +47,7 @@ const loginRoutes = require('./routes/login');
 const registerRoutes = require('./routes/register');
 const logoutRoutes = require('./routes/logout');
 const profileRoutes = require('./routes/profile');
+const categoryRoutes = require('./routes/category');
 
 app.use('/', indexRoutes);
 app.use('/product', productRoutes);
@@ -48,6 +55,7 @@ app.use('/login', loginRoutes);
 app.use('/register', registerRoutes);
 app.use('/logout', logoutRoutes);
 app.use('/profile', profileRoutes);
+app.use('/category', categoryRoutes);
 
 
 
