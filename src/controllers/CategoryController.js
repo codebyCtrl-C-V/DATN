@@ -1,6 +1,7 @@
 const slugify = require("slugify");
 const Category = require("../models/Category");
 const Product = require("../models/Product");
+const { Op } = require("sequelize"); 
 
 class CategoryController {
   // // tạo category
@@ -52,6 +53,129 @@ class CategoryController {
 
       res.render("product/productList", {
         category,
+        products,
+        currentPage: page,
+        totalPages,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Lỗi server");
+    }
+  }
+
+  // lấy sản phẩm rau củ/trái cây giảm giá
+  async getProductsSale(req, res) {
+    try {
+      const { page = 1 } = req.query; 
+      const limit = 10; 
+      const offset = (page - 1) * limit; 
+
+      // Lấy tổng số sản phẩm trong danh mục
+      const totalProducts = await Product.count({
+        where: {
+          id: [1, 2], 
+          sale: { [Op.gt]: 0 } // sale > 0
+        }
+      });
+
+      // Lấy danh sách sản phẩm có phân trang
+      const products = await Product.findAll({
+        where: {
+          id: [1, 2], 
+          sale: { [Op.gt]: 0 } // sale > 0
+        },
+        limit: limit,
+        offset: offset,
+        order: [['updatedAt', 'DESC']],
+        raw: true,
+      });
+
+      // Tính tổng số trang
+      const totalPages = Math.ceil(totalProducts / limit);
+
+      res.render("product/productSale", {
+        products,
+        currentPage: page,
+        totalPages,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Lỗi server");
+    }
+  }
+
+  // lấy sản phẩm rau củ/trái cây giảm giá
+  async getProductsSale(req, res) {
+    try {
+      const { page = 1 } = req.query; 
+      const limit = 10; 
+      const offset = (page - 1) * limit; 
+
+      // Lấy tổng số sản phẩm trong danh mục
+      const totalProducts = await Product.count({
+        where: {
+          category_id: [1, 2], 
+          sale: { [Op.gt]: 0 } // sale > 0
+        }
+      });
+
+      // Lấy danh sách sản phẩm có phân trang
+      const products = await Product.findAll({
+        where: {
+          category_id: [1, 2], 
+          sale: { [Op.gt]: 0 } // sale > 0
+        },
+        limit: limit,
+        offset: offset,
+        order: [['updatedAt', 'DESC']],
+        raw: true,
+      });
+
+      // Tính tổng số trang
+      const totalPages = Math.ceil(totalProducts / limit);
+
+      res.render("product/productSale", {
+        products,
+        currentPage: page,
+        totalPages,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Lỗi server");
+    }
+  }
+  
+  // lấy sản phẩm thực phẩm chế biến giảm giá
+  async getProductsSaleProceed(req, res) {
+    try {
+      const { page = 1 } = req.query; 
+      const limit = 10; 
+      const offset = (page - 1) * limit; 
+
+      // Lấy tổng số sản phẩm trong danh mục
+      const totalProducts = await Product.count({
+        where: {
+          category_id: 4, 
+          sale: { [Op.gt]: 0 } // sale > 0
+        }
+      });
+
+      // Lấy danh sách sản phẩm có phân trang
+      const products = await Product.findAll({
+        where: {
+          category_id: 4, 
+          sale: { [Op.gt]: 0 } // sale > 0
+        },
+        limit: limit,
+        offset: offset,
+        order: [['updatedAt', 'DESC']],
+        raw: true,
+      });
+
+      // Tính tổng số trang
+      const totalPages = Math.ceil(totalProducts / limit);
+
+      res.render("product/productSale", {
         products,
         currentPage: page,
         totalPages,

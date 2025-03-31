@@ -48,6 +48,7 @@ const registerRoutes = require('./routes/register');
 const logoutRoutes = require('./routes/logout');
 const profileRoutes = require('./routes/profile');
 const categoryRoutes = require('./routes/category');
+const newsRoutes = require('./routes/news')
 
 app.use('/', indexRoutes);
 app.use('/product', productRoutes);
@@ -56,6 +57,7 @@ app.use('/register', registerRoutes);
 app.use('/logout', logoutRoutes);
 app.use('/profile', profileRoutes);
 app.use('/category', categoryRoutes);
+app.use('/news', newsRoutes);
 
 
 

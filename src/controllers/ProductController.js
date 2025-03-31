@@ -52,7 +52,7 @@ class ProductController {
   async getNewProducts() {
     try {
       const products = await Product.findAll({
-        order: [['createdAt', 'DESC']],
+        order: [['updatedAt', 'DESC']],
         limit: 10,
         raw: true
       }); 

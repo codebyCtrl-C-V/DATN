@@ -1,0 +1,38 @@
+<div class="container my-5">
+  <h1 class="text-center mb-4">Tin tức</h1>
+
+  <!-- List news -->
+  <div class="news-grid">
+    {{#each news}}
+      <div class="row news-item mb-4 align-items-center">
+        <div class="col-md-4">
+          <figure>
+            <a href="/news/{{this.slug}}" title="{{this.title}}">
+              <img src="{{this.image}}" alt="{{this.title}}" class="img-fluid rounded" />
+            </a>
+          </figure>
+        </div>
+        
+        <div class="col-md-8">
+          <h3><a href="/news/{{this.slug}}" class="text-dark">{{this.title}}</a></h3>
+          <p class="text-muted truncate-text">{{this.content}}</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <!-- Pagination -->
+  <nav class="mt-4">
+    <ul class="pagination justify-content-center">
+      {{#if (gt currentPage 1)}}
+        <a href="?page={{subtract currentPage 1}}" class="btn">Trang trước</a>
+      {{/if}}
+
+      <span class="numberPage">Trang {{currentPage}} / {{totalPages}}</span>
+
+      {{#if (lt currentPage totalPages)}}
+        <a href="?page={{add currentPage 1}}" class="btn">Trang sau</a>
+      {{/if}}
+    </ul>
+  </nav>
+</div>
