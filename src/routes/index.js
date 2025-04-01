@@ -24,6 +24,8 @@ router.get('/', async (req, res) => {
     }
 });
 
+//tìm kiếm
+router.get('/search', productController.searchProducts);
 //Hệ thống cửa hàng
 router.get('/store-system', (req, res) => res.render('pages/storeSystem'));
 //Giới thiệu

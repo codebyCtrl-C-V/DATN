@@ -1,0 +1,185 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Quản Lý Sản Phẩm</h2>
+    <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">Thêm Sản Phẩm</button>
+        <input type="text" class="form-control w-25" placeholder="Tìm kiếm sản phẩm...">
+    </div>
+    {{#if success}}
+        <div class="alert alert-success">Thêm sản phẩm thành công</div>
+    {{/if}}
+    {{#if error}}
+        <div class="alert alert-danger">Sản phẩm đã tồn tại</div>
+    {{/if}}
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Giá</th>
+                <th>Kho</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        {{#each products}}
+        <tbody>
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.stock}}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal"
+                            data-id="{{this.id}}" data-name="{{this.name}}" data-price="{{this.price}}" 
+                            data-stock="{{this.stock}}" data-description="{{this.description}}" data-category="{{this.category_id}}">
+                        Sửa
+                    </button>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" data-id="{{this.id}}">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        {{/each}}
+    </table>
+</div>
+
+<!-- Modal Thêm Sản Phẩm -->
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Sản Phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/admin/product">
+                    <div class="mb-3">
+                        <label class="form-label">Tên Sản Phẩm</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Giá</label>
+                        <input type="number" class="form-control" name="price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Kho</label>
+                        <input type="number" class="form-control" name="stock" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mô Tả</label>
+                        <textarea class="form-control" name="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Hình ảnh</label>
+                        <input type="file" class="form-control" name="image">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Danh Mục</label>
+                        <select class="form-select" name="category_id">
+                            <!-- Loop through categories dynamically -->
+                            <option value="1">Điện Thoại</option>
+                            <option value="2">Laptop</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Thêm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Sửa Sản Phẩm -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sửa Sản Phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/admin/product/update">
+                    <input type="hidden" name="id" id="editProductId">
+                    <div class="mb-3">
+                        <label class="form-label">Tên Sản Phẩm</label>
+                        <input type="text" class="form-control" name="name" id="editProductName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Giá</label>
+                        <input type="number" class="form-control" name="price" id="editProductPrice" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Kho</label>
+                        <input type="number" class="form-control" name="stock" id="editProductStock" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mô Tả</label>
+                        <textarea class="form-control" name="description" id="editProductDescription"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Hình ảnh</label>
+                        <input type="file" class="form-control" name="image">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Danh Mục</label>
+                        <select class="form-select" name="category_id" id="editProductCategory">
+                            <option value="1">Điện Thoại</option>
+                            <option value="2">Laptop</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Lưu Thay Đổi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xóa Sản Phẩm -->
+<div class="modal fade" id="deleteProductModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa Sản Phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa sản phẩm này không?</p>
+                <form method="post" action="/admin/product/delete">
+                    <input type="hidden" name="id" id="deleteProductId">
+                    <button type="submit" class="btn btn-danger">Đồng Ý</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sửa sản phẩm
+    const editButtons = document.querySelectorAll('[data-bs-target="#editProductModal"]');
+    editButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-name');
+            const price = button.getAttribute('data-price');
+            const stock = button.getAttribute('data-stock');
+            const description = button.getAttribute('data-description');
+            const category = button.getAttribute('data-category');
+            
+            document.getElementById('editProductId').value = id;
+            document.getElementById('editProductName').value = name;
+            document.getElementById('editProductPrice').value = price;
+            document.getElementById('editProductStock').value = stock;
+            document.getElementById('editProductDescription').value = description;
+            document.getElementById('editProductCategory').value = category;
+        });
+    });
+
+    // Xóa sản phẩm
+    const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteProductModal"]');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            document.getElementById('deleteProductId').value = id;
+        });
+    });
+</script>

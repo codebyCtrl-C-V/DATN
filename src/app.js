@@ -42,6 +42,7 @@ app.use(getCategories);
 
 // Import routes
 const indexRoutes = require('./routes/index');
+const adminRoutes = require('./routes/admin');
 const productRoutes = require('./routes/product');
 const loginRoutes = require('./routes/login');
 const registerRoutes = require('./routes/register');
@@ -51,6 +52,7 @@ const categoryRoutes = require('./routes/category');
 const newsRoutes = require('./routes/news')
 
 app.use('/', indexRoutes);
+app.use('/admin', adminRoutes);
 app.use('/product', productRoutes);
 app.use('/login', loginRoutes);
 app.use('/register', registerRoutes);

@@ -26,7 +26,7 @@ class CategoryController {
       else if (sort === "price-desc") order = [["price", "DESC"]];
       else if (sort === "name-asc") order = [["name", "ASC"]];
       else if (sort === "name-desc") order = [["name", "DESC"]];
-      else order = [['createdAt', 'DESC']]
+      else order = [['updatedAt', 'DESC']]
 
       // Tìm danh mục theo slug
       const category = await Category.findOne({ where: { slug }, raw: true });

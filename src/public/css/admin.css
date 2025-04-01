@@ -1,0 +1,98 @@
+body {
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+.dashboard-card {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #007bff;
+}
+
+.card-body p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.dashboard-sidebar {
+  min-height: 100vh;
+  max-width: 50vh;
+  background-color: #343a40;
+  color: #fff;
+  border-right: 2px solid #495057;
+}
+
+.dashboard-sidebar a {
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-sidebar a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Navbar Styles */
+.navbar-light .navbar-nav .nav-link {
+  color: #555;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #007bff;
+}
+
+.navbar-toggler {
+  border-color: #007bff;
+}
+
+.navbar-toggler-icon {
+  background-color: #007bff;
+}
+
+/* Sidebar toggle for mobile */
+@media (max-width: 767px) {
+  .dashboard-sidebar {
+    display: none;
+  }
+  .navbar-toggler {
+    display: block;
+  }
+}
+
+/* Card Customization */
+.card-custom {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+.card-header {
+  background-color: #f1f3f5;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+}
+
+.card-header h5 {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Responsive for mobile and small devices */
+@media (max-width: 767px) {
+  .dashboard-sidebar {
+    display: none;
+  }
+  .navbar-toggler {
+    display: block;
+  }
+}

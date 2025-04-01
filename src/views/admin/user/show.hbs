@@ -1,0 +1,183 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Quản Lý Người Dùng</h2>
+        <div class="d-flex justify-content-between mb-3">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">Thêm Người Dùng</button>
+            <input type="text" class="form-control w-25" placeholder="Tìm kiếm người dùng...">
+        </div>
+        {{#if success}}
+            <div class="alert alert-success">Thêm tài khoản thành công</div>
+        {{/if}}
+        {{#if error}}
+            <div class="alert alert-danger">Tài khoản đã tồn tại</div>
+        {{/if}}
+        <table class="table table-bordered table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            {{#each users}}
+            <tbody>
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.role}}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal" 
+                        data-id="{{this.id}}" data-name="{{this.name}}" data-email="{{this.email}}" 
+                        data-phone="{{this.phone}}" data-address="{{this.address}}" data-role="{{this.role}}">Sửa</button>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-id="{{this.id}}">Xóa</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Thêm Người Dùng -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm Người Dùng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/admin/user">
+                        <div class="mb-3">
+                            <label class="form-label">Tên</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mật khẩu</label>
+                            <input type="text" class="form-control" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">SĐT</label>
+                            <input type="text" class="form-control" name="phone" >
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" name="address">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Vai trò</label>
+                            <select class="form-select" name="role">
+                                <option value="customer">Customer</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">Thêm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sửa Người Dùng -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sửa Người Dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/admin/user/update">
+                    <input type="hidden" name="id" id="editUserId">
+                    <div class="mb-3">
+                        <label class="form-label">Tên</label>
+                        <input type="text" class="form-control" name="name" id="editUserName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="editUserEmail" disabled>
+                    </div>
+                     <div class="mb-3">
+                            <label class="form-label">SĐT</label>
+                            <input type="text" class="form-control" name="phone" id="editUserPhone">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" name="address" id="editUserAddress">
+                        </div>
+                    <div class="mb-3">
+                        <label class="form-label">Vai trò</label>
+                        <select class="form-select" name="role" id="editUserRole">
+                            <option value="customer">Customer</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xóa Người Dùng -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa Người Dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa người dùng này không?</p>
+                <form method="post" action="/admin/user/delete">
+                    <input type="hidden" name="id" id="deleteUserId">
+                    <button type="submit" class="btn btn-danger">Đồng ý</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Ẩn thông báo sau 5 giây
+    setTimeout(() => {
+        document.querySelector('.alert-success')?.remove();
+        document.querySelector('.alert-danger')?.remove();
+    }, 5000);
+
+    // Sửa người dùng
+    const editButtons = document.querySelectorAll('[data-bs-target="#editUserModal"]');
+    editButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-name');
+            const email = button.getAttribute('data-email');
+            const phone = button.getAttribute('data-phone');
+            const address = button.getAttribute('data-address');
+            const role = button.getAttribute('data-role');
+            
+            document.getElementById('editUserId').value = id;
+            document.getElementById('editUserName').value = name;
+            document.getElementById('editUserEmail').value = email;
+            document.getElementById('editUserPhone').value = phone;
+            document.getElementById('editUserAddress').value = address;
+            document.getElementById('editUserRole').value = role;
+        });
+    });
+
+    // Xóa người dùng
+    const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteUserModal"]');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            document.getElementById('deleteUserId').value = id;
+        });
+    });
+</script>

@@ -1,0 +1,65 @@
+<h1 class="text-center mb-4">Chào mừng bạn đến với trang quản trị</h1>
+
+<!-- Dashboard Overview Cards -->
+<div class="row">
+  <div class="col-12 col-md-4 mb-4">
+    <div class="card dashboard-card">
+      <div class="card-body">
+        <h5 class="card-title">Sản phẩm</h5>
+        <p class="card-text">Số lượng sản phẩm: {{totalProducts}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4 mb-4">
+    <div class="card dashboard-card">
+      <div class="card-body">
+        <h5 class="card-title">Đơn hàng</h5>
+        <p class="card-text">Đơn hàng: {{totalOrders}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4 mb-4">
+    <div class="card dashboard-card">
+      <div class="card-body">
+        <h5 class="card-title">Người dùng</h5>
+        <p class="card-text">Tổng số người dùng: {{totalUsers}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Latest Orders Table -->
+<div class="card mb-4">
+  <div class="card-header">
+    <h5 class="card-title">Danh sách đơn hàng mới</h5>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Khách hàng</th>
+          <th>Sản phẩm</th>
+          <th>Giá</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Nguyễn Văn A</td>
+          <td>Rau củ quả hữu cơ</td>
+          <td>50.000 VND</td>
+          <td><span class="badge bg-warning">Đang xử lý</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Trần Thị B</td>
+          <td>Thịt bò tươi</td>
+          <td>120.000 VND</td>
+          <td><span class="badge bg-success">Đã giao</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

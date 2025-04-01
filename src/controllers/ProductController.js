@@ -1,7 +1,7 @@
 const Product = require("../models/Product");
+const { Op } = require("sequelize");
 
 class ProductController {
-
   // Lấy danh sách sản phẩm cho trang home
   async getProductsForHome() {
     try {
@@ -35,15 +35,15 @@ class ProductController {
   async getBestSellerProducts() {
     try {
       const products = await Product.findAll({
-        order: [['sale', 'DESC']],
-        limit: 10
+        order: [["sale", "DESC"]],
+        limit: 10,
       });
-      const bestSellerWithDiscount = products.map(product => ({
+      const bestSellerWithDiscount = products.map((product) => ({
         ...product.toJSON(), // Chuyển Sequelize object về JSON
-        discountPrice: product.price * (1 - product.sale / 100) // Giảm giá
-    }));
+        discountPrice: product.price * (1 - product.sale / 100), // Giảm giá
+      }));
 
-    return { products: bestSellerWithDiscount };
+      return { products: bestSellerWithDiscount };
     } catch (error) {
       console.error("Lỗi lấy sản phẩm bán chạy:", error);
       return [];
@@ -52,15 +52,62 @@ class ProductController {
   async getNewProducts() {
     try {
       const products = await Product.findAll({
-        order: [['updatedAt', 'DESC']],
+        order: [["updatedAt", "DESC"]],
         limit: 10,
-        raw: true
-      }); 
+        raw: true,
+      });
 
-    return products;
+      return products;
     } catch (error) {
       console.error("Lỗi lấy sản phẩm mới:", error);
       return [];
+    }
+  }
+
+  async searchProducts(req, res) {
+    try {
+      const { q, sort, page = 1 } = req.query; 
+      const limit = 10; // Số sản phẩm mỗi trang
+      const offset = (page - 1) * limit;
+
+      // Tạo điều kiện tìm kiếm
+      const whereCondition = {};
+      if (q) {
+        whereCondition.name = { [Op.like]: `%${q}%` }; // Tìm tên chứa từ khóa
+      }
+
+      let order = [];
+      if (sort === "price-asc") order = [["price", "ASC"]];
+      else if (sort === "price-desc") order = [["price", "DESC"]];
+      else if (sort === "name-asc") order = [["name", "ASC"]];
+      else if (sort === "name-desc") order = [["name", "DESC"]];
+      else order = [['updatedAt', 'DESC']]
+
+      // Đếm tổng số sản phẩm phù hợp
+      const totalProducts = await Product.count({ where: whereCondition });
+
+      // Lấy danh sách sản phẩm
+      const products = await Product.findAll({
+        where: whereCondition,
+        limit,
+        offset,
+        order: order,
+        raw: true,
+      });
+
+      // Tính tổng số trang
+      const totalPages = Math.ceil(totalProducts / limit);
+
+      // Render kết quả tìm kiếm
+      res.render("search", {
+        products,
+        currentPage: page,
+        totalPages,
+        query: q,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Lỗi server");
     }
   }
 
@@ -92,4 +139,4 @@ class ProductController {
     }
   }
 }
-module.exports = new ProductController;
+module.exports = new ProductController();
