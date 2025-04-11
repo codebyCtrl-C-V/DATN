@@ -50,6 +50,7 @@ const logoutRoutes = require('./routes/logout');
 const profileRoutes = require('./routes/profile');
 const categoryRoutes = require('./routes/category');
 const newsRoutes = require('./routes/news')
+const cartRoutes = require('./routes/cart');
 
 app.use('/', indexRoutes);
 app.use('/admin', adminRoutes);
@@ -60,7 +61,7 @@ app.use('/logout', logoutRoutes);
 app.use('/profile', profileRoutes);
 app.use('/category', categoryRoutes);
 app.use('/news', newsRoutes);
-
+app.use('/cart', cartRoutes);
 
 
 // Khởi động server

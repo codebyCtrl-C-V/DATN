@@ -22,7 +22,9 @@
   </div>
 
   <!-- Product Grid -->
-  <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+  <div
+    class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
+  >
     {{#each products}}
       <div class="col">
         <div class="product-item">
@@ -65,11 +67,11 @@
                 </button>
               </span>
             </div>
-            <a href="#" class="add-cart">
+            <button class="add-cart" data-product-id="{{this.id}}">
               <svg width="24" height="24">
                 <use xlink:href="#cart"></use>
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -93,10 +95,8 @@
 </div>
 
 <script>
-  document.getElementById("sortProducts").addEventListener("change", function () {
-    const sortValue = this.value;
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set("sort", sortValue);
-    window.location.search = urlParams.toString();
-  });
+  document.getElementById("sortProducts").addEventListener("change", function ()
+  { const sortValue = this.value; const urlParams = new
+  URLSearchParams(window.location.search); urlParams.set("sort", sortValue);
+  window.location.search = urlParams.toString(); });
 </script>

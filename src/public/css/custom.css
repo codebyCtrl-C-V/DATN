@@ -67,6 +67,13 @@
   background-color: rgb(103, 162, 103);
 }
 
+.cart a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* -------------------home end---------------------- */
 
 /* ---------------------productList, product info---------------- */

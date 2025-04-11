@@ -693,9 +693,7 @@ h1,h2,h3,h4,h5,h6 {
     padding-left: 0;
   }
   .dropdown-toggle::after {
-    position: absolute;
-    right: 0;
-    top: 21px;
+    
   }
 }
 

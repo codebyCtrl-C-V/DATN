@@ -1,0 +1,60 @@
+<div class="container py-5">
+  <h2 class="mb-4 text-center">Giỏ hàng của bạn</h2>
+
+  {{#if cartItems.length}}
+  <div class="row">
+    <!-- Danh sách sản phẩm -->
+    <div class="col-lg-8">
+      <ul class="list-group mb-4">
+        {{#each cartItems}}
+        <li class="list-group-item d-flex justify-content-between align-items-center flex-column flex-md-row">
+          <div class="d-flex align-items-center mb-3 mb-md-0">
+            <img src="{{this.product.image}}" alt="{{this.product.name}}" class="img-fluid me-3" style="width: 80px; height: 80px; object-fit: cover;">
+            <div>
+              <h6 class="mb-1">{{this.product.name}}</h6>
+              <small class="text-muted">{{this.product.description}}</small>
+              <div class="mt-2 d-flex" style="gap:20px">
+                {{!-- <form method="post" action="/cart/update" class="d-inline">
+                  <input type="number" name="quantity" value="{{this.quantity}}" class="form-control d-inline-block w-auto" min="1">
+                  <button type="submit" class="btn btn-sm btn-outline-primary">Cập nhật</button>
+                </form> --}}
+                <input type="text" class="form-control d-inline-block" value="{{this.quantity}}" readonly 
+                style="width: 50px; text-align: center; border: 1px solid #cccc; border-radius: 3px; ">
+                <form method="post" action="/cart/delete/{{this.id}}" class="d-inline">
+                  <button type="submit" class="btn btn-sm btn-outline-danger">Xóa</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <strong class="text-end text-md-start mt-2 mt-md-0">{{formatCurrency this.finalPrice}} x {{this.quantity}}</strong>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <!-- Tổng kết -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Tóm tắt đơn hàng</h5>
+          <ul class="list-group mb-3">
+            {{#each cartItems}}
+            <li class="list-group-item d-flex justify-content-between">
+              <span>{{this.product.name}} (x{{this.quantity}})</span>
+              <strong>{{formatCurrency this.total}}</strong>
+            </li>
+            {{/each}}
+            <li class="list-group-item d-flex justify-content-between">
+              <span><strong>Tổng tiền</strong></span>
+              <strong class="text-primary">{{formatCurrency (calculateTotal cartItems)}}</strong>
+            </li>
+          </ul>
+          <a href="/checkout" class="btn btn-primary w-100">Thanh toán</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{else}}
+    <div class="alert alert-info text-center">Giỏ hàng của bạn đang trống.</div>
+  {{/if}}
+</div>

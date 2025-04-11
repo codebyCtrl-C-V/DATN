@@ -5,7 +5,7 @@
   <div
     class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
   >
-    {{#each products}}
+    {{#each productsSale}}
       <div class="col">
         <div class="product-item">
           <span
@@ -53,11 +53,11 @@
                 </button>
               </span>
             </div>
-            <a href="#" class="add-cart">
-              <svg width="24" height="24">
+            <button class="add-cart" data-product-id="{{this.id}}">
+              <svg width="24" height="24" >
                 <use xlink:href="#cart"></use>
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </div>
