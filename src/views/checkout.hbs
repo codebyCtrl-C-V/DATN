@@ -1,7 +1,7 @@
 <div class="container py-5">
   <h2 class="mb-4 text-center">Thanh toán</h2>
 
-  <form method="POST" action="/checkout/submit">
+  <form method="POST" action="/checkout/submit" id="checkoutForm">
     <div class="row">
       <!-- Thông tin khách hàng -->
       <div class="col-md-6">
@@ -45,14 +45,56 @@
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="paymentMethod" id="online" value="online">
-                <label class="form-check-label" for="online">Thanh toán online</label>
+                <label class="form-check-label" for="online">Thanh toán online (VNPay)</label>
               </div>
             </div>
 
-            <button type="submit" class="btn btn-success w-100">Xác nhận thanh toán</button>
+            <button type="submit" class="btn btn-success w-100" id="submitBtn">Xác nhận thanh toán</button>
           </div>
         </div>
       </div>
     </div>
   </form>
 </div>
+
+<script>
+document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+    const totalAmount = {{calculateTotal cartItems}};
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    
+    if (paymentMethod === 'online') {
+        try {
+            const response = await fetch('/payment/create_payment_url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    amount: totalAmount,
+                    orderInfo: `Thanh toán đơn hàng của ${name} - ${phone}`,
+                    customerName: name,
+                    customerPhone: phone,
+                    customerAddress: address
+                })
+            });
+            
+            const data = await response.json();
+            if (data.paymentUrl) {
+                window.location.href = data.paymentUrl;
+            } else {
+                alert('Không thể tạo URL thanh toán. Vui lòng thử lại sau.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra khi tạo URL thanh toán');
+        }
+    } else {
+        this.submit();
+    }
+});
+</script>

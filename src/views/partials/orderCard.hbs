@@ -1,0 +1,54 @@
+<div class="col-md-6 mb-4">
+  <div class="card h-100">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">Đơn hàng </h5>
+      <span class="badge bg-{{getStatusColor this.status}}" style="color: #ac9696;">
+        {{getStatusText this.status}}
+      </span>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <small class="text-muted">Ngày đặt: {{formatDate this.createdAt}}</small>
+      </div>
+      
+      <div class="order-items mb-3">
+        {{#each this.details}}
+        <div class="d-flex align-items-center mb-2">
+          <img src="{{this.product.image}}" alt="{{this.product.name}}" 
+            class="img-fluid rounded me-2" style="width: 40px; height: 40px; object-fit: cover;">
+          <div class="flex-grow-1">
+            <h6 class="mb-0">{{this.product.name}}</h6>
+            <small class="text-muted">x{{this.quantity}}</small>
+          </div>
+          <div class="text-end">
+            <strong>{{formatCurrency this.total}}</strong>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <small class="text-muted">Phương thức thanh toán:</small>
+          <p class="mb-0">{{getPaymentMethodText this.paymentMethod}}</p>
+        </div>
+        <div class="text-end">
+          <small class="text-muted">Tổng tiền:</small>
+          <h5 class="mb-0 text-primary">{{formatCurrency this.total}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer" style="min-height: 50px;">
+      <div class="d-flex justify-content-between">
+        {{#if (canCancel this.status)}}
+        <form action="/orders/{{this.id}}/cancel" method="POST" class="d-inline">
+          <button type="submit" class="btn btn-outline-danger btn-sm" 
+            onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này?')">
+            <i class="fas fa-times me-1"></i>Hủy đơn hàng
+          </button>
+        </form>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div> 

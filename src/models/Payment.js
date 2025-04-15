@@ -4,8 +4,9 @@ const Order = require("./Order");
 
 const Payment = sequelize.define("Payment", {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    payment_method: { 
-        type: DataTypes.ENUM("COD", "Bank Transfer", "Momo", "ZaloPay"),
+    orderId: { type: DataTypes.INTEGER, allowNull: false },
+    paymentMethod: { 
+        type: DataTypes.ENUM("cod", "online"),
         allowNull: false 
     },
     status: { 

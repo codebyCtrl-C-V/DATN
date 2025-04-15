@@ -43,7 +43,7 @@ class UserController {
       // Gửi token về client (lưu vào cookie)
       res.cookie("token", token, {
         httpOnly: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
+        maxAge: 3 * 24 * 60 * 60 * 1000,
       });
 
       // Phân quyền
