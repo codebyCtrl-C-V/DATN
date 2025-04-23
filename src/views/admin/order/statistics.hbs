@@ -1,0 +1,134 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Thống kê đơn hàng</h2>
+    <a href="/admin/orders" class="btn btn-secondary">
+      <i class="fas fa-arrow-left me-2"></i>Quay lại
+    </a>
+  </div>
+
+  <div class="row">
+    <!-- Thống kê theo trạng thái -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Thống kê theo trạng thái</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="statusChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Doanh thu tháng -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Doanh thu tháng này</h5>
+        </div>
+        <div class="card-body">
+          <h2 class="text-primary mb-0">{{formatCurrency monthlyRevenue}}</h2>
+          <p class="text-muted">Tính từ đầu tháng đến nay</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thống kê đơn hàng theo ngày -->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Thống kê đơn hàng theo ngày</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="dailyOrdersChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // Thống kê theo trạng thái
+  const statusCtx = document.getElementById('statusChart').getContext('2d');
+  const statusData = {
+    labels: ['Chờ xử lý', 'Đang xử lý', 'Đã hoàn tất', 'Đã hủy'],
+    datasets: [{
+      data: [
+        {{#each statusStats}}
+          {{#if (eq status "pending")}}{{count}}{{/if}}
+        {{/each}},
+        {{#each statusStats}}
+          {{#if (eq status "processing")}}{{count}}{{/if}}
+        {{/each}},
+        {{#each statusStats}}
+          {{#if (eq status "completed")}}{{count}}{{/if}}
+        {{/each}},
+        {{#each statusStats}}
+          {{#if (eq status "cancelled")}}{{count}}{{/if}}
+        {{/each}}
+      ],
+      backgroundColor: [
+        'rgba(54, 162, 235, 0.8)',
+        'rgba(255, 206, 86, 0.8)',
+        'rgba(75, 192, 192, 0.8)',
+        'rgba(255, 99, 132, 0.8)'
+      ]
+    }]
+  };
+
+  new Chart(statusCtx, {
+    type: 'pie',
+    data: statusData,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
+
+  // Thống kê đơn hàng theo ngày
+  const dailyCtx = document.getElementById('dailyOrdersChart').getContext('2d');
+  const dailyData = {
+    labels: [
+      {{#each dailyOrders}}
+        '{{formatDate date "DD/MM"}}'{{#unless @last}},{{/unless}}
+      {{/each}}
+    ],
+    datasets: [{
+      label: 'Số đơn hàng',
+      data: [
+        {{#each dailyOrders}}
+          {{count}}{{#unless @last}},{{/unless}}
+        {{/each}}
+      ],
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+    }]
+  };
+
+  new Chart(dailyCtx, {
+    type: 'line',
+    data: dailyData,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top'
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      }
+    }
+  });
+</script> 

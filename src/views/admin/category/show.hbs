@@ -1,0 +1,151 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Quản Lý Danh Mục</h2>
+    
+    {{#if success}}
+    <div class="alert alert-success">
+        {{#if (eq success '1')}}
+            Thêm danh mục thành công
+        {{else if (eq success '2')}}
+            Cập nhật danh mục thành công
+        {{else if (eq success '3')}}
+            Xóa danh mục thành công
+        {{/if}}
+    </div>
+    {{/if}}
+    {{#if error}}
+    <div class="alert alert-danger">
+        {{#if (eq error '1')}}
+            Danh mục đã tồn tại
+        {{else if (eq error '2')}}
+            Cập nhật danh mục thất bại
+        {{else if (eq error '3')}}
+            Xóa danh mục thất bại
+        {{/if}}
+    </div>
+    {{/if}}
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Slug</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each categories}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.slug}}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal" 
+                    data-id="{{this.id}}" data-name="{{this.name}}" data-slug="{{this.slug}}">Sửa</button>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal" data-id="{{this.id}}">Xóa</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal Thêm Danh Mục -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Danh Mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/admin/categories">
+                    <div class="mb-3">
+                        <label class="form-label">Tên</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Thêm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Sửa Danh Mục -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sửa Danh Mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/admin/categories/update">
+                    <input type="hidden" name="id" id="editCategoryId">
+                    <div class="mb-3">
+                        <label class="form-label">Tên</label>
+                        <input type="text" class="form-control" name="name" id="editCategoryName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Slug</label>
+                        <input type="text" class="form-control" name="slug" id="editCategorySlug" required>
+                    </div>
+                   
+
+                    <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xóa Danh Mục -->
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa Danh Mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa danh mục này không?</p>
+                <form method="post" action="/admin/categories/delete">
+                    <input type="hidden" name="id" id="deleteCategoryId">
+                    <button type="submit" class="btn btn-danger">Đồng ý</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Ẩn thông báo sau 5 giây
+    setTimeout(() => {
+        document.querySelector('.alert-success')?.remove();
+        document.querySelector('.alert-danger')?.remove();
+    }, 5000);
+
+    // Sửa danh mục
+    const editButtons = document.querySelectorAll('[data-bs-target="#editCategoryModal"]');
+    editButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-name');
+            const slug = button.getAttribute('data-slug');
+
+            document.getElementById('editCategoryId').value = id;
+            document.getElementById('editCategoryName').value = name;
+            document.getElementById('editCategorySlug').value = slug;
+        });
+    });
+
+    // Xóa danh mục
+    const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteCategoryModal"]');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            document.getElementById('deleteCategoryId').value = id;
+        });
+    });
+</script>

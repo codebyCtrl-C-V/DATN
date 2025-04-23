@@ -75,3 +75,37 @@ Handlebars.registerHelper('formatDate', (date) => {
     minute: '2-digit'
   });
 });
+
+// Helper để so sánh bằng nhau
+Handlebars.registerHelper('eq', function(a, b) {
+    return a === b;
+});
+
+// Helper để so sánh lớn hơn
+Handlebars.registerHelper('gt', function(a, b) {
+    return a > b;
+});
+
+// Helper để so sánh nhỏ hơn
+Handlebars.registerHelper('lt', function(a, b) {
+    return a < b;
+});
+
+// Helper để cộng
+Handlebars.registerHelper('add', function(a, b) {
+    return a + b;
+});
+
+// Helper để trừ
+Handlebars.registerHelper('subtract', function(a, b) {
+    return a - b;
+});
+
+// Helper để tạo mảng số từ start đến end
+Handlebars.registerHelper('range', function(start, end) {
+    const result = [];
+    for (let i = start; i <= end; i++) {
+        result.push(i);
+    }
+    return result;
+});

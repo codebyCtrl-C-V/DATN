@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <h2 class="text-center mb-4" style="margin-top: 30px;">Quản Lý Thanh Toán</h2>
+  <div class="d-flex justify-content-end align-items-center mb-4">
+        <form class="d-flex" action="/admin/payment/search" method="GET">
+            <input type="text" class="form-control me-2" name="q" placeholder="Tìm kiếm theo orderID" value="{{search}}">
+            <button type="submit" class="btn btn-primary" style="min-width: 120px;">Tìm kiếm</button>
+        </form>
+    </div>
+
+  <!-- Orders Table -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Order ID</th>
+              <th>Phương thức thanh toán</th>
+              <th>Trạng thái</th>
+              <th>Ngày cập nhật</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#if payment}}
+            <tr>
+              <td>#{{payment.id}}</td>
+              <td>{{payment.orderId}}</td>
+              <td>{{#if (eq payment.paymentMethod "cod")}}Thanh toán khi nhận hàng{{else}}Thanh toán online{{/if}}</td>
+              <td>{{#if (eq payment.status "pending")}}<span class="badge bg-warning">Chờ thanh toán</span>{{else if (eq payment.status "paid")}}<span class="badge bg-success">Đã thanh toán</span>{{else}}<span class="badge bg-secondary">Không xác định</span>{{/if}}</td>
+              <td>{{formatDate payment.updatedAt}}</td>
+              <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#statusModal{{payment.id}}">
+                    <i class="fas fa-edit">Cập nhật</i>
+                  </button>
+                </div>
+
+                <!-- Status Update Modal -->
+                <div class="modal fade" id="statusModal{{payment.id}}" tabindex="-1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Cập nhật trạng thái thanh toán #{{payment.id}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <form action="/admin/payment/{{payment.id}}/status" method="POST">
+                        <div class="modal-body">
+                          <select name="status" class="form-select">
+                            <option value="pending" {{#if (eq payment.status "pending")}}selected{{/if}}>Chờ thanh toán</option>
+                            <option value="paid" {{#if (eq payment.status "paid")}}selected{{/if}}>Đã thanh toán</option>
+                          </select>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                          <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {{/if}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div> 

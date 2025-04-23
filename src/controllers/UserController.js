@@ -20,7 +20,7 @@ class UserController {
       const user = await User.findOne({ where: { email } });
       if (!user)
         return res.render("login", {
-          error: "Tài khoản không tồn tại",
+          error: "1",
           layout: "auth",
         });
 
@@ -28,7 +28,7 @@ class UserController {
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
         return res.render("login", {
-          error: "Sai mật khẩu",
+          error: "2",
           email,
           layout: "auth",
         });
@@ -54,7 +54,11 @@ class UserController {
       }
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Lỗi server" });
+      return res.render("login", {
+        error: "3",
+        email,
+        layout: "auth",
+      });
     }
   }
 
@@ -70,7 +74,7 @@ class UserController {
     // Kiểm tra nhập lại mật khẩu
     if (password !== repassword) {
       return res.render("register", {
-        error: "Mật khẩu nhập không khớp",
+        error: "1",
         name,
         email,
         layout: "auth",
@@ -82,7 +86,7 @@ class UserController {
       const existingUser = await User.findOne({ where: { email } });
       if (existingUser) {
         return res.render("register", {
-          error: "Email đã tồn tại",
+          error: "2",
           name,
           email,
           layout: "auth",
@@ -103,7 +107,12 @@ class UserController {
       return res.redirect("/login?success=1");
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Lỗi server!" });
+      return res.render("register", {
+        error: "3",
+        name,
+        email,
+        layout: "auth",
+      });
     }
   }
 
@@ -169,13 +178,13 @@ class UserController {
       const isMatch = await bcrypt.compare(oldpass, user.password);
       if (!isMatch) {
         return res.render("profile/changePass", {
-          error: "Mật khẩu cũ không đúng",
+          error: "1",
         });
       }
 
       if (newpass !== renewpass) {
         return res.render("profile/changePass", {
-          error: "Mật khẩu nhập lại không khớp",
+          error: "2",
         });
       }
 
@@ -190,7 +199,9 @@ class UserController {
       res.redirect("/profile?success=2");
     } catch (error) {
       console.error(error);
-      res.status(500).send("Lỗi server");
+      return res.render("profile/changePass", {
+        error: "3",
+      });
     }
   }
 }

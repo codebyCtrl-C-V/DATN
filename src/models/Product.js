@@ -5,7 +5,7 @@ const { default: slugify } = require("slugify");
 
 const Product = sequelize.define("Product", {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    name: { type: DataTypes.STRING, allowNull: false },
+    name: { type: DataTypes.STRING, allowNull: false},
     slug: { type: DataTypes.STRING , allowNull: false, unique: true },
     description: { type: DataTypes.TEXT },
     price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },

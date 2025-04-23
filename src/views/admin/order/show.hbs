@@ -1,0 +1,165 @@
+<div class="container-fluid">
+  <h2 class="text-center mb-4" style="margin-top: 30px;">Quản Lý Đơn Hàng</h2>
+  <div class="d-flex justify-content-end align-items-center mb-4">
+        <form class="d-flex" action="/admin/orders/search" method="GET">
+            <input type="text" class="form-control me-2" name="q" placeholder="Tìm kiếm theo ID" value="{{search}}">
+            <button type="submit" class="btn btn-primary" style="min-width: 120px;">Tìm kiếm</button>
+        </form>
+    </div>
+
+  <!-- Status Tabs -->
+  <ul class="nav nav-tabs mb-4" id="orderTabs" role="tablist" style="border-bottom: 2px solid #dee2e6;">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link {{#if (eq status 'all')}}active{{/if}}" href="/admin/orders?status=all" role="tab" 
+         style="border: none; color: #6c757d; padding: 12px 20px; font-weight: 500;">
+        <i class="fas fa-list me-2"></i>Tất cả
+      </a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link {{#if (eq status 'pending')}}active{{/if}}" href="/admin/orders?status=pending" role="tab"
+         style="border: none; color: #6c757d; padding: 12px 20px; font-weight: 500;">
+        <i class="fas fa-clock me-2"></i>Chờ xử lý
+      </a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link {{#if (eq status 'processing')}}active{{/if}}" href="/admin/orders?status=processing" role="tab"
+         style="border: none; color: #6c757d; padding: 12px 20px; font-weight: 500;">
+        <i class="fas fa-cog me-2"></i>Đang xử lý
+      </a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link {{#if (eq status 'completed')}}active{{/if}}" href="/admin/orders?status=completed" role="tab"
+         style="border: none; color: #6c757d; padding: 12px 20px; font-weight: 500;">
+        <i class="fas fa-check-circle me-2"></i>Đã hoàn tất
+      </a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link {{#if (eq status 'cancelled')}}active{{/if}}" href="/admin/orders?status=cancelled" role="tab"
+         style="border: none; color: #6c757d; padding: 12px 20px; font-weight: 500;">
+        <i class="fas fa-times-circle me-2"></i>Đã hủy
+      </a>
+    </li>
+  </ul>
+
+  <style>
+    .nav-tabs .nav-link {
+      transition: all 0.3s ease;
+    }
+    .nav-tabs .nav-link:hover {
+      color: #0d6efd !important;
+      background-color: rgba(13, 110, 253, 0.05);
+    }
+    .nav-tabs .nav-link.active {
+      color: #0d6efd !important;
+      background-color: transparent;
+      border-bottom: 2px solid #0d6efd !important;
+      margin-bottom: -2px;
+    }
+  </style>
+
+  <!-- Orders Table -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tên tài khoản</th>
+              <th>Thông tin tài khoản</th>
+              <th>Tổng tiền</th>
+              <th>Trạng thái</th>
+              <th>Ngày tạo</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each orders}}
+            <tr>
+              <td>#{{id}}</td>
+              <td>{{User.name}}</td>
+              <td>
+                <div>{{User.phone}}</div>
+                <div class="text-muted small">{{User.email}}</div>
+              </td>
+              <td>{{formatCurrency total}}</td>
+              <td>
+                <span class="badge bg-{{getStatusColor status}}">
+                  {{getStatusText status}}
+                </span>
+              </td>
+              <td>{{formatDate createdAt}}</td>
+              <td>
+                <div class="btn-group">
+                  <a href="/admin/orders/{{id}}" class="btn btn-sm btn-info">
+                    <i class="fas fa-eye">Xem </i>
+                  </a>
+                  <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#statusModal{{id}}">
+                    <i class="fas fa-edit">Cập nhật</i>
+                  </button>
+                </div>
+
+                <!-- Status Update Modal -->
+                <div class="modal fade" id="statusModal{{id}}" tabindex="-1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Cập nhật trạng thái đơn hàng #{{id}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <form action="/admin/orders/{{id}}/status" method="POST">
+                        <div class="modal-body">
+                          <select name="status" class="form-select">
+                            <option value="pending" {{#if (eq status "pending")}}selected{{/if}}>Chờ xử lý</option>
+                            <option value="processing" {{#if (eq status "processing")}}selected{{/if}}>Đang xử lý</option>
+                            <option value="completed" {{#if (eq status "completed")}}selected{{/if}}>Đã hoàn tất</option>
+                            <option value="cancelled" {{#if (eq status "cancelled")}}selected{{/if}}>Đã hủy</option>
+                          </select>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                          <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {{else}}
+            <tr>
+              <td colspan="7" class="text-center py-4">
+                <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                <h4>Không có đơn hàng nào</h4>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      {{#if totalPages}}
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item {{#if (eq currentPage 1)}}disabled{{/if}}">
+            <a class="page-link" href="{{#if search}}/admin/orders/search?q={{search}}&{{else}}/admin/orders?{{/if}}page={{subtract currentPage 1}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {{#each (range 1 totalPages)}}
+          <li class="page-item {{#if (eq this ../currentPage)}}active{{/if}}">
+            <a class="page-link" href="{{#if ../search}}/admin/orders/search?q={{../search}}&{{else}}/admin/orders?{{/if}}page={{this}}">{{this}}</a>
+          </li>
+          {{/each}}
+          <li class="page-item {{#if (eq currentPage totalPages)}}disabled{{/if}}">
+            <a class="page-link" href="{{#if search}}/admin/orders/search?q={{search}}&{{else}}/admin/orders?{{/if}}page={{add currentPage 1}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      {{/if}}
+    </div>
+  </div>
+</div> 

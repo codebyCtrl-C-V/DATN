@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Chi tiết đơn hàng #{{order.id}}</h2>
+    <a href="/admin/orders" class="btn btn-secondary">
+      <i class="fas fa-arrow-left me-2"></i>Quay lại
+    </a>
+  </div>
+
+  <div class="row">
+    <!-- Thông tin đơn hàng -->
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Thông tin đơn hàng</h5>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p class="mb-1"><strong>Trạng thái:</strong></p>
+              <span class="badge bg-{{getStatusColor order.status}}">
+                {{getStatusText order.status}}
+              </span>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-1"><strong>Ngày tạo:</strong></p>
+              <p class="mb-0">{{formatDate order.createdAt}}</p>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p class="mb-1"><strong>Phương thức thanh toán:</strong></p>
+              <p class="mb-0">{{getPaymentMethodText order.paymentMethod}}</p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-1"><strong>Tổng tiền:</strong></p>
+              <h5 class="text-primary mb-0">{{formatCurrency order.total}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danh sách sản phẩm -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Sản phẩm</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th>Đơn giá</th>
+                  <th>Số lượng</th>
+                  <th>Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each orderDetails}}
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img src="{{this.Product.image}}" alt="{{this.Product.name}}" class="rounded me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                      <div>
+                        <h6 class="mb-0">{{this.Product.name}}</h6>
+                        <small class="text-muted">SKU: {{this.Product.id}}</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{formatCurrency price}}</td>
+                  <td>{{quantity}}</td>
+                  <td>{{formatCurrency total}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thông tin khách hàng -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Thông tin giao hàng</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <p class="mb-1"><strong>Tên khách hàng:</strong></p>
+            <p class="mb-0">{{order.name}}</p>
+          </div>
+          <div class="mb-3">
+            <p class="mb-1"><strong>Số điện thoại:</strong></p>
+            <p class="mb-0">{{order.phone}}</p>
+          </div>
+          <div>
+            <p class="mb-1"><strong>Địa chỉ giao hàng:</strong></p>
+            <p class="mb-0">{{order.address}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

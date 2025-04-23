@@ -1,14 +1,37 @@
 <div class="container mt-5">
     <h2 class="text-center mb-4">Quản Lý Sản Phẩm</h2>
     <div class="d-flex justify-content-between mb-3">
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">Thêm Sản Phẩm</button>
-        <input type="text" class="form-control w-25" placeholder="Tìm kiếm sản phẩm...">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal" style="margin-bottom: 15px;">Thêm Sản Phẩm</button>
+        <form class="d-flex" action="/admin/product/search" method="GET">
+            <input type="text" class="form-control me-2" name="q" placeholder="Tìm kiếm sản phẩm..." value="{{search}}">
+            <button type="submit" class="btn btn-primary" style="min-width: 120px;">Tìm kiếm</button>
+        </form>
     </div>
     {{#if success}}
-        <div class="alert alert-success">Thêm sản phẩm thành công</div>
+        <div class="alert alert-success">
+            {{#if (eq success "1")}}
+                Thêm sản phẩm thành công
+            {{else if (eq success "2")}}
+                Cập nhật sản phẩm thành công
+            {{/if}}
+        </div>
     {{/if}}
     {{#if error}}
-        <div class="alert alert-danger">Sản phẩm đã tồn tại</div>
+        <div class="alert alert-danger">
+            {{#if (eq error "1")}}
+                Sản phẩm đã tồn tại
+            {{else if (eq error "2")}}
+                Upload ảnh thất bại
+            {{else if (eq error "3")}}
+                Xóa sản phẩm thất bại
+            {{else if (eq error "4")}}
+                Thêm sản phẩm thất bại
+            {{else if (eq error "5")}}
+                Cập nhật sản phẩm thất bại
+            {{else if (eq error "6")}}
+                Không tìm thấy sản phẩm
+            {{/if}}
+        </div>
     {{/if}}
     <table class="table table-bordered table-hover text-center">
         <thead class="table-dark">
@@ -20,17 +43,18 @@
                 <th>Hành động</th>
             </tr>
         </thead>
-        {{#each products}}
         <tbody>
+            {{#each products}}
             <tr>
                 <td>{{this.id}}</td>
                 <td>{{this.name}}</td>
-                <td>{{this.price}}</td>
+                <td>{{formatCurrency this.price}}</td>
                 <td>{{this.stock}}</td>
                 <td>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal"
                             data-id="{{this.id}}" data-name="{{this.name}}" data-price="{{this.price}}" 
-                            data-stock="{{this.stock}}" data-description="{{this.description}}" data-category="{{this.category_id}}">
+                            data-stock="{{this.stock}}" data-description="{{this.description}}" data-category="{{this.category_id}}"
+                            data-sale="{{this.sale}}" data-image="{{this.image}}">
                         Sửa
                     </button>
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal" data-id="{{this.id}}">
@@ -38,9 +62,32 @@
                     </button>
                 </td>
             </tr>
+            {{/each}}
         </tbody>
-        {{/each}}
     </table>
+
+    <!-- Phân trang -->
+    {{#if totalPages}}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item {{#if (eq currentPage 1)}}disabled{{/if}}">
+                <a class="page-link" href="{{#if search}}/admin/product/search?q={{search}}&{{else}}/admin/product?{{/if}}page={{subtract currentPage 1}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {{#each (range 1 totalPages)}}
+            <li class="page-item {{#if (eq this ../currentPage)}}active{{/if}}">
+                <a class="page-link" href="{{#if ../search}}/admin/product/search?q={{../search}}&{{else}}/admin/product?{{/if}}page={{this}}">{{this}}</a>
+            </li>
+            {{/each}}
+            <li class="page-item {{#if (eq currentPage totalPages)}}disabled{{/if}}">
+                <a class="page-link" href="{{#if search}}/admin/product/search?q={{search}}&{{else}}/admin/product?{{/if}}page={{add currentPage 1}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {{/if}}
 </div>
 
 <!-- Modal Thêm Sản Phẩm -->
@@ -52,7 +99,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/admin/product">
+                <form method="post" action="/admin/product" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label class="form-label">Tên Sản Phẩm</label>
                         <input type="text" class="form-control" name="name" required>
@@ -70,15 +117,19 @@
                         <textarea class="form-control" name="description"></textarea>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Giảm giá (%)</label>
+                        <input type="number" class="form-control" name="sale" min="0" max="100" value="0">
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Hình ảnh</label>
                         <input type="file" class="form-control" name="image">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Danh Mục</label>
                         <select class="form-select" name="category_id">
-                            <!-- Loop through categories dynamically -->
-                            <option value="1">Điện Thoại</option>
-                            <option value="2">Laptop</option>
+                            {{#each categories}}
+                            <option value="{{this.id}}">{{this.name}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     <button type="submit" class="btn btn-success">Thêm</button>
@@ -97,7 +148,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/admin/product/update">
+                <form method="post" action="/admin/product/update" enctype="multipart/form-data">
                     <input type="hidden" name="id" id="editProductId">
                     <div class="mb-3">
                         <label class="form-label">Tên Sản Phẩm</label>
@@ -116,14 +167,19 @@
                         <textarea class="form-control" name="description" id="editProductDescription"></textarea>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Giảm giá (%)</label>
+                        <input type="number" class="form-control" name="sale" id="editProductSale" min="0" max="100" value="0">
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Hình ảnh</label>
-                        <input type="file" class="form-control" name="image">
+                        <input type="file" class="form-control" name="image" id="editProductImage">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Danh Mục</label>
                         <select class="form-select" name="category_id" id="editProductCategory">
-                            <option value="1">Điện Thoại</option>
-                            <option value="2">Laptop</option>
+                            {{#each categories}}
+                            <option value="{{this.id}}">{{this.name}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     <button type="submit" class="btn btn-success">Lưu Thay Đổi</button>
@@ -164,6 +220,8 @@
             const stock = button.getAttribute('data-stock');
             const description = button.getAttribute('data-description');
             const category = button.getAttribute('data-category');
+            const sale = button.getAttribute('data-sale');
+            const image = button.getAttribute('data-image');
             
             document.getElementById('editProductId').value = id;
             document.getElementById('editProductName').value = name;
@@ -171,6 +229,8 @@
             document.getElementById('editProductStock').value = stock;
             document.getElementById('editProductDescription').value = description;
             document.getElementById('editProductCategory').value = category;
+            document.getElementById('editProductSale').value = sale;
+            document.getElementById('editProductImage').value = image;
         });
     });
 
@@ -182,4 +242,12 @@
             document.getElementById('deleteProductId').value = id;
         });
     });
+
+    //ẩn thông báo
+    setTimeout(() => {
+        const alert = document.querySelector('.alert');
+        if (alert) {
+            alert.remove();
+        }
+    }, 3000);
 </script>

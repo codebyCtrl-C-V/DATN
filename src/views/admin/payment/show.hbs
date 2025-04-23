@@ -1,0 +1,150 @@
+<div class="container-fluid">
+  <h2 class="text-center mb-4" style="margin-top: 30px;">Kết quả tìm kiếm</h2>
+  <div class="d-flex justify-content-end align-items-center mb-4">
+        <form class="d-flex" action="/admin/payment/search" method="GET">
+            <input type="text" class="form-control me-2" name="q" placeholder="Tìm kiếm theo orderID" value="{{search}}">
+            <button type="submit" class="btn btn-primary" style="min-width: 120px;">Tìm kiếm</button>
+        </form>
+  </div>
+  {{#if success}}
+  <div class="alert alert-success">
+    Cập nhật trạng thái thanh toán thành công
+  </div>
+  {{/if}}
+
+  {{#if error}}
+  <div class="alert alert-danger">
+    Không tìm thấy thông tin thanh toán
+  </div>
+  {{/if}}
+
+  <!-- Status Tabs -->
+  <ul class="nav nav-tabs mb-4" id="paymentTabs" role="tablist" style="border-bottom: 2px solid #dee2e6;">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link {{#if (eq status 'all')}}active{{/if}}" href="/admin/payment?status=all" role="tab" 
+         style="border: none; color: #6c757d; padding: 12px 20px; font-weight: 500;">
+        <i class="fas fa-list me-2"></i>Tất cả
+      </a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link {{#if (eq status 'pending')}}active{{/if}}" href="/admin/payment?status=pending" role="tab"
+         style="border: none; color: #6c757d; padding: 12px 20px; font-weight: 500;">
+            <i class="fas fa-clock me-2"></i>Chờ thanh toán
+      </a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link {{#if (eq status 'paid')}}active{{/if}}" href="/admin/payment?status=paid" role="tab"
+         style="border: none; color: #6c757d; padding: 12px 20px; font-weight: 500;">
+        <i class="fas fa-check-circle me-2"></i>Đã thanh toán
+      </a>
+    </li>
+  </ul>
+
+  <style>
+    .nav-tabs .nav-link {
+      transition: all 0.3s ease;
+    }
+    .nav-tabs .nav-link:hover {
+      color: #0d6efd !important;
+      background-color: rgba(13, 110, 253, 0.05);
+    }
+    .nav-tabs .nav-link.active {
+      color: #0d6efd !important;
+      background-color: transparent;
+      border-bottom: 2px solid #0d6efd !important;
+      margin-bottom: -2px;
+    }
+  </style>
+
+  <!-- Orders Table -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Order ID</th>
+              <th>Phương thức thanh toán</th>
+              <th>Trạng thái</th>
+              <th>Ngày cập nhật</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each payments}}
+            <tr>
+              <td>#{{id}}</td>
+              <td>{{orderId}}</td>
+              <td>{{#if (eq paymentMethod "cod")}}Thanh toán khi nhận hàng{{else}}Thanh toán online{{/if}}</td>
+              <td>{{#if (eq status "pending")}}<span class="badge bg-warning">Chờ thanh toán</span>{{else if (eq status "paid")}}<span class="badge bg-success">Đã thanh toán</span>{{else}}<span class="badge bg-secondary">Không xác định</span>{{/if}}</td>
+              <td>{{formatDate updatedAt}}</td>
+              <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#statusModal{{id}}">
+                    <i class="fas fa-edit">Cập nhật</i>
+                  </button>
+                </div>
+
+                <!-- Status Update Modal -->
+                <div class="modal fade" id="statusModal{{id}}" tabindex="-1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Cập nhật trạng thái thanh toán #{{id}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <form action="/admin/payment/{{id}}/status" method="POST">
+                        <div class="modal-body">
+                          <select name="status" class="form-select">
+                            <option value="pending" {{#if (eq status "pending")}}selected{{/if}}>Chờ thanh toán</option>
+                            <option value="paid" {{#if (eq status "paid")}}selected{{/if}}>Đã thanh toán</option>
+                          </select>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                          <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {{else}}
+            <tr>
+              <td colspan="7" class="text-center py-4">
+                <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                <h4>Không có thanh toán nào</h4>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      {{#if totalPages}}
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item {{#if (eq currentPage 1)}}disabled{{/if}}">
+            <a class="page-link" href="{{#if search}}/admin/payment/search?q={{search}}&{{else}}/admin/payment?{{/if}}page={{subtract currentPage 1}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {{#each (range 1 totalPages)}}
+          <li class="page-item {{#if (eq this ../currentPage)}}active{{/if}}">
+            <a class="page-link" href="{{#if ../search}}/admin/payment/search?q={{../search}}&{{else}}/admin/payment?{{/if}}page={{this}}">{{this}}</a>
+          </li>
+          {{/each}}
+          <li class="page-item {{#if (eq currentPage totalPages)}}disabled{{/if}}">
+            <a class="page-link" href="{{#if search}}/admin/payment/search?q={{search}}&{{else}}/admin/payment?{{/if}}page={{add currentPage 1}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      {{/if}}
+    </div>
+  </div>
+</div> 

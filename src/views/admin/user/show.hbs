@@ -1,89 +1,115 @@
 <div class="container mt-5">
     <h2 class="text-center mb-4">Quản Lý Người Dùng</h2>
-        <div class="d-flex justify-content-between mb-3">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">Thêm Người Dùng</button>
-            <input type="text" class="form-control w-25" placeholder="Tìm kiếm người dùng...">
-        </div>
-        {{#if success}}
-            <div class="alert alert-success">Thêm tài khoản thành công</div>
-        {{/if}}
-        {{#if error}}
-            <div class="alert alert-danger">Tài khoản đã tồn tại</div>
-        {{/if}}
-        <table class="table table-bordered table-hover text-center">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Tên</th>
-                    <th>Email</th>
-                    <th>Vai trò</th>
-                    <th>Hành động</th>
-                </tr>
-            </thead>
-            {{#each users}}
-            <tbody>
-                <tr>
-                    <td>{{this.id}}</td>
-                    <td>{{this.name}}</td>
-                    <td>{{this.email}}</td>
-                    <td>{{this.role}}</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal" 
-                        data-id="{{this.id}}" data-name="{{this.name}}" data-email="{{this.email}}" 
-                        data-phone="{{this.phone}}" data-address="{{this.address}}" data-role="{{this.role}}">Sửa</button>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-id="{{this.id}}">Xóa</button>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+    <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal" style="margin-bottom: 15px;">Thêm Người Dùng</button>
+        <form class="d-flex" action="/admin/user/search" method="GET">
+            <input type="text" class="form-control me-2" name="q" placeholder="Tìm kiếm người dùng..." value="{{search}}">
+            <button type="submit" class="btn btn-primary" style="min-width: 120px;">Tìm kiếm</button>
+        </form>
     </div>
+    {{#if success}}
+        <div class="alert alert-success">Thêm tài khoản thành công</div>
+    {{/if}}
+    {{#if error}}
+        <div class="alert alert-danger">Tài khoản đã tồn tại</div>
+    {{/if}}
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Vai trò</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.role}}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal" 
+                    data-id="{{this.id}}" data-name="{{this.name}}" data-email="{{this.email}}" 
+                    data-phone="{{this.phone}}" data-address="{{this.address}}" data-role="{{this.role}}">Sửa</button>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-id="{{this.id}}">Xóa</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 
-    <!-- Modal Thêm Người Dùng -->
-    <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thêm Người Dùng</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="/admin/user">
-                        <div class="mb-3">
-                            <label class="form-label">Tên</label>
-                            <input type="text" class="form-control" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Mật khẩu</label>
-                            <input type="text" class="form-control" name="password" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">SĐT</label>
-                            <input type="text" class="form-control" name="phone" >
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Địa chỉ</label>
-                            <input type="text" class="form-control" name="address">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Vai trò</label>
-                            <select class="form-select" name="role">
-                                <option value="customer">Customer</option>
-                                <option value="admin">Admin</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-success">Thêm</button>
-                    </form>
-                </div>
+    <!-- Phân trang -->
+    {{#if totalPages}}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item {{#if (eq currentPage 1)}}disabled{{/if}}">
+                <a class="page-link" href="{{#if search}}/admin/user/search?q={{search}}&{{else}}/admin/user?{{/if}}page={{subtract currentPage 1}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {{#each (range 1 totalPages)}}
+            <li class="page-item {{#if (eq this ../currentPage)}}active{{/if}}">
+                <a class="page-link" href="{{#if ../search}}/admin/user/search?q={{../search}}&{{else}}/admin/user?{{/if}}page={{this}}">{{this}}</a>
+            </li>
+            {{/each}}
+            <li class="page-item {{#if (eq currentPage totalPages)}}disabled{{/if}}">
+                <a class="page-link" href="{{#if search}}/admin/user/search?q={{search}}&{{else}}/admin/user?{{/if}}page={{add currentPage 1}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {{/if}}
+</div>
+
+<!-- Modal Thêm Người Dùng -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Người Dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/admin/user">
+                    <div class="mb-3">
+                        <label class="form-label">Tên</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="text" class="form-control" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">SĐT</label>
+                        <input type="text" class="form-control" name="phone" >
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" name="address">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Vai trò</label>
+                        <select class="form-select" name="role">
+                            <option value="customer">Customer</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Thêm</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Modal Sửa Người Dùng -->
+<!-- Modal Sửa Người Dùng -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -143,7 +169,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     // Ẩn thông báo sau 5 giây

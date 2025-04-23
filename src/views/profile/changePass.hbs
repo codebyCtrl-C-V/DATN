@@ -27,7 +27,15 @@
     </div>
 
     {{#if error}}
-    <div class="alert alert-danger text-center">{{error}}</div>
+    <div class="alert alert-danger text-center">
+        {{#if (eq error "1")}}
+            Mật khẩu cũ không đúng
+        {{else if (eq error "2")}}
+            Mật khẩu nhập lại không khớp
+        {{else if (eq error "3")}}
+            Đổi mật khẩu thất bại
+        {{/if}}
+    </div>
     {{/if}}
     
     <div class="text-center">
