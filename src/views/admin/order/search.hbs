@@ -26,38 +26,38 @@
           <tbody>
             {{#if order}}
             <tr>
-              <td>#{{id}}</td>
-              <td>{{User.name}}</td>
+              <td>#{{order.id}}</td>
+              <td>{{order.User.name}}</td>
               <td>
-                <div>{{User.phone}}</div>
-                <div class="text-muted small">{{User.email}}</div>
+                <div>{{order.User.phone}}</div>
+                <div class="text-muted small">{{order.User.email}}</div>
               </td>
-              <td>{{formatCurrency total}}</td>
+              <td>{{formatCurrency order.total}}</td>
               <td>
-                <span class="badge bg-{{getStatusColor status}}">
-                  {{getStatusText status}}
+                <span class="badge bg-{{getStatusColor order.status}}">
+                  {{getStatusText order.status}}
                 </span>
               </td>
-              <td>{{formatDate createdAt}}</td>
+              <td>{{formatDate order.createdAt}}</td>
               <td>
                 <div class="btn-group">
-                  <a href="/admin/orders/{{id}}" class="btn btn-sm btn-info">
-                    <i class="fas fa-eye"></i>
+                  <a href="/admin/orders/detail/{{order.id}}" class="btn btn-sm btn-info">
+                    <i class="fas fa-eye">Xem</i>
                   </a>
-                  <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#statusModal{{id}}">
-                    <i class="fas fa-edit"></i>
+                  <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#statusModal{{order.id}}">
+                    <i class="fas fa-edit">Cập nhật</i>
                   </button>
                 </div>
 
                 <!-- Status Update Modal -->
-                <div class="modal fade" id="statusModal{{id}}" tabindex="-1">
+                <div class="modal fade" id="statusModal{{order.id}}" tabindex="-1">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">Cập nhật trạng thái đơn hàng #{{id}}</h5>
+                        <h5 class="modal-title">Cập nhật trạng thái đơn hàng #{{order.id}}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                       </div>
-                      <form action="/admin/orders/{{id}}/status" method="POST">
+                      <form action="/admin/orders/{{order.id}}/status" method="POST">
                         <div class="modal-body">
                           <select name="status" class="form-select">
                             <option value="pending" {{#if (eq status "pending")}}selected{{/if}}>Chờ xử lý</option>

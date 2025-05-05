@@ -1,11 +1,17 @@
 <div class="container-fluid">
   <h2 class="text-center mb-4" style="margin-top: 30px;">Quản Lý Đơn Hàng</h2>
   <div class="d-flex justify-content-end align-items-center mb-4">
-        <form class="d-flex" action="/admin/orders/search" method="GET">
+        <form class="d-flex" action="/admin/orders/search?q=1" method="GET">
             <input type="text" class="form-control me-2" name="q" placeholder="Tìm kiếm theo ID" value="{{search}}">
             <button type="submit" class="btn btn-primary" style="min-width: 120px;">Tìm kiếm</button>
         </form>
+  </div>
+
+  {{#if error}}
+    <div class="alert alert-danger">
+      Không tìm thấy thông tin đơn hàng
     </div>
+  {{/if}}
 
   <!-- Status Tabs -->
   <ul class="nav nav-tabs mb-4" id="orderTabs" role="tablist" style="border-bottom: 2px solid #dee2e6;">
@@ -91,7 +97,7 @@
               <td>{{formatDate createdAt}}</td>
               <td>
                 <div class="btn-group">
-                  <a href="/admin/orders/{{id}}" class="btn btn-sm btn-info">
+                  <a href="/admin/orders/detail/{{id}}" class="btn btn-sm btn-info">
                     <i class="fas fa-eye">Xem </i>
                   </a>
                   <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#statusModal{{id}}">
@@ -163,3 +169,13 @@
     </div>
   </div>
 </div> 
+
+<script>
+  //ẩn thông báo
+    setTimeout(() => {
+        const alert = document.querySelector('.alert');
+        if (alert) {
+            alert.remove();
+        }
+    }, 3000);
+</script>

@@ -23,7 +23,7 @@ router.post("/product/delete", authMiddleware, adminMiddleware, adminController.
 
 // Quản lý đơn hàng
 router.get('/orders', authMiddleware, adminMiddleware, adminController.getOrders);
-router.get('/orders/:id', authMiddleware, adminMiddleware, adminController.getOrderDetail);
+router.get('/orders/detail/:id', authMiddleware, adminMiddleware, adminController.getOrderDetail);
 router.post('/orders/:id/status', authMiddleware, adminMiddleware, adminController.updateOrderStatus);
 router.get('/orders/search', authMiddleware, adminMiddleware, adminController.searchOrders);
 router.get('/orders/statistics', authMiddleware, adminMiddleware, adminController.getOrderStatistics);
@@ -38,5 +38,12 @@ router.get('/categories', authMiddleware, adminMiddleware, adminController.getCa
 router.post('/categories', authMiddleware, adminMiddleware, adminController.createCategory);
 router.post('/categories/update', authMiddleware, adminMiddleware, adminController.updateCategory);
 router.post('/categories/delete', authMiddleware, adminMiddleware, adminController.deleteCategory);
+
+// Quản lý tin tức
+router.get("/news", authMiddleware, adminMiddleware, adminController.getNews);
+router.get("/news/search", authMiddleware, adminMiddleware, adminController.searchNews);
+router.post("/news", authMiddleware, adminMiddleware, upload.single('image'), adminController.createNews);
+router.post("/news/update", authMiddleware, adminMiddleware, upload.single('image'), adminController.updateNews);
+router.post("/news/delete", authMiddleware, adminMiddleware, adminController.deleteNews);
 
 module.exports = router;

@@ -1,0 +1,195 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Quản Lý Tin Tức</h2>
+    <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addNewsModal" style="margin-bottom: 15px;">Thêm Tin Tức</button>
+        <form class="d-flex" action="/admin/news/search" method="GET">
+            <input type="text" class="form-control me-2" name="q" placeholder="Tìm kiếm tin tức..." value="{{search}}">
+            <button type="submit" class="btn btn-primary" style="min-width: 120px;">Tìm kiếm</button>
+        </form>
+    </div>
+
+    {{#if success}}
+        <div class="alert alert-success">
+            {{#if (eq success "1")}} Thêm tin tức thành công {{else if (eq success "2")}} Cập nhật tin tức thành công {{/if}}
+        </div>
+    {{/if}}
+
+    {{#if error}}
+        <div class="alert alert-danger">
+            {{#if (eq error "1")}} Tin tức đã tồn tại {{else if (eq error "2")}} Upload ảnh thất bại {{else if (eq error "3")}} Xóa tin tức thất bại {{else if (eq error "4")}} Thêm tin tức thất bại {{else if (eq error "5")}} Cập nhật tin tức thất bại {{else if (eq error "6")}} Không tìm thấy tin tức {{/if}}
+        </div>
+    {{/if}}
+
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Tiêu đề</th>
+                <th>Ảnh</th>
+                <th style="width: 300px">Slug</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each news}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.title}}</td>
+                <td><img src="{{this.image}}" alt="ảnh tin tức" style="width: 50px; height: 50px"></td>
+                <td>{{this.slug}}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editNewsModal"
+                            data-id="{{this.id}}" data-title="{{this.title}}" data-slug="{{this.slug}}" 
+                            data-content="{{this.content}}" data-image="{{this.image}}">
+                        Sửa
+                    </button>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteNewsModal" data-id="{{this.id}}">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <!-- Phân trang -->
+    {{#if totalPages}}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item {{#if (eq currentPage 1)}}disabled{{/if}}">
+                <a class="page-link" href="{{#if search}}/admin/news/search?q={{search}}&{{else}}/admin/news?{{/if}}page={{subtract currentPage 1}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {{#each (range 1 totalPages)}}
+            <li class="page-item {{#if (eq this ../currentPage)}}active{{/if}}">
+                <a class="page-link" href="{{#if ../search}}/admin/news/search?q={{../search}}&{{else}}/admin/news?{{/if}}page={{this}}">{{this}}</a>
+            </li>
+            {{/each}}
+            <li class="page-item {{#if (eq currentPage totalPages)}}disabled{{/if}}">
+                <a class="page-link" href="{{#if search}}/admin/news/search?q={{search}}&{{else}}/admin/news?{{/if}}page={{add currentPage 1}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {{/if}}
+</div>
+
+<!-- Modal Thêm Tin Tức -->
+<div class="modal fade" id="addNewsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Tin Tức</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/admin/news" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label">Tiêu đề</label>
+                        <input type="text" class="form-control" name="title" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Nội dung</label>
+                        <textarea class="form-control" name="content"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Hình ảnh</label>
+                        <input type="file" class="form-control" name="image" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Thêm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Sửa Tin Tức -->
+<div class="modal fade" id="editNewsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sửa Tin Tức</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/admin/news/update" enctype="multipart/form-data">
+                    <input type="hidden" name="id" id="editNewsId">
+                    <div class="mb-3">
+                        <label class="form-label">Tiêu đề</label>
+                        <input type="text" class="form-control" name="title" id="editNewsTitle" required>
+                    </div>
+                 
+                    <div class="mb-3">
+                        <label class="form-label">Nội dung</label>
+                        <textarea class="form-control" name="content" id="editNewsContent"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Hình ảnh</label>
+                        <input type="file" class="form-control" name="image" id="editNewsImage">
+                    </div>
+                    <button type="submit" class="btn btn-success">Lưu Thay Đổi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xóa Tin Tức -->
+<div class="modal fade" id="deleteNewsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa Tin Tức</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa tin tức này không?</p>
+                <form method="post" action="/admin/news/delete">
+                    <input type="hidden" name="id" id="deleteNewsId">
+                    <button type="submit" class="btn btn-danger">Đồng Ý</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sửa tin tức
+    const editButtons = document.querySelectorAll('[data-bs-target="#editNewsModal"]');
+    editButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            const title = button.getAttribute('data-title');
+            //const slug = button.getAttribute('data-slug');
+            const content = button.getAttribute('data-content');
+            const image = button.getAttribute('data-image');
+            
+            document.getElementById('editNewsId').value = id;
+            document.getElementById('editNewsTitle').value = title;
+            //document.getElementById('editNewsSlug').value = slug;
+            document.getElementById('editNewsContent').value = content;
+            document.getElementById('editNewsImage').value = image;
+        });
+    });
+
+    // Xóa tin tức
+    const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteNewsModal"]');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            document.getElementById('deleteNewsId').value = id;
+        });
+    });
+
+     //ẩn thông báo
+    setTimeout(() => {
+        const alert = document.querySelector('.alert');
+        if (alert) {
+            alert.remove();
+        }
+    }, 3000);
+</script>

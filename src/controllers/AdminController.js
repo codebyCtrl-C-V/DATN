@@ -270,9 +270,12 @@ class AdminController {
         fs.unlinkSync(req.file.path);
       }
 
+      const slug = slugify(name, { lower: true, strict: true });
+
       // Cập nhật sản phẩm
       const updatedProduct = await product.update({ 
         name, 
+        slug,
         price, 
         stock, 
         description, 
@@ -466,6 +469,10 @@ class AdminController {
         raw: true,
         nest: true
       });
+
+      if (!order) {
+        return res.redirect("/admin/orders?error=1");
+      }
 
       res.render("admin/order/search", {
         layout: "admin",
@@ -684,6 +691,148 @@ class AdminController {
     }
   }
 
+  // quản lí tin tức
+  async getNews(req, res) {
+    try {
+      const page = parseInt(req.query.page) || 1;
+      const limit = 10;
+      const offset = (page - 1) * limit;
+  
+      const { count, rows: news } = await News.findAndCountAll({
+        limit,
+        offset,
+        raw: true
+      });
+  
+      const totalPages = Math.ceil(count / limit);
+  
+      res.render("admin/news/show", {
+        layout: "admin",
+        news,
+        currentPage: page,
+        totalPages,
+        limit,
+        success: req.query.success,
+        error: req.query.error
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Lỗi server");
+    }
+  }
+
+  async createNews(req, res) {
+    const { title, content } = req.body;
+    try {
+      const slug = slugify(title, { lower: true, strict: true });
+  
+      let imageUrl = null;
+      if (req.file && req.file.path) {
+        const result = await cloudinary.uploader.upload(req.file.path, {
+          folder: 'news'
+        });
+        imageUrl = result.secure_url;
+        fs.unlinkSync(req.file.path);
+      }
+  
+      const newNews = await News.create({
+        title,
+        slug,
+        content,
+        image: imageUrl
+      });
+  
+      if (!newNews) {
+        return res.redirect("/admin/news?error=1");
+      }
+  
+      return res.redirect("/admin/news?success=1");
+    } catch (error) {
+      console.error(error);
+      return res.redirect("/admin/news?error=2");
+    }
+  }
+
+  async updateNews(req, res) {
+    try {
+      const { id, title, content } = req.body;
+  
+      const news = await News.findByPk(id);
+      if (!news) return res.redirect("/admin/news?error=3");
+  
+      let imageUrl = news.image;
+      if (req.file && req.file.path) {
+        const result = await cloudinary.uploader.upload(req.file.path, {
+          folder: 'news'
+        });
+        imageUrl = result.secure_url;
+        fs.unlinkSync(req.file.path);
+      }
+  
+      const slug = slugify(title, { lower: true, strict: true });
+  
+      await news.update({ title, slug, content, image: imageUrl });
+  
+      res.redirect("/admin/news?success=2");
+    } catch (error) {
+      console.error(error);
+      res.redirect("/admin/news?error=4");
+    }
+  }
+
+  async deleteNews(req, res) {
+    try {
+      const { id } = req.body;
+      const news = await News.findByPk(id);
+      if (!news) return res.status(404).send("Không tìm thấy tin tức");
+  
+      await news.destroy();
+      res.redirect("/admin/news");
+    } catch (error) {
+      console.error(error);
+      res.redirect("/admin/news?error=5");
+    }
+  }
+
+  async searchNews(req, res) {
+    try {
+      const { q } = req.query;
+      const page = parseInt(req.query.page) || 1;
+      const limit = 10;
+      const offset = (page - 1) * limit;
+  
+      const whereCondition = {
+        [Op.or]: [
+          { title: { [Op.like]: `%${q}%` } },
+          { content: { [Op.like]: `%${q}%` } }
+        ]
+      };
+  
+      const { count, rows: news } = await News.findAndCountAll({
+        where: whereCondition,
+        limit,
+        offset,
+        raw: true,
+      });
+  
+      const totalPages = Math.ceil(count / limit);
+  
+      res.render("admin/news/show", {
+        layout: "admin",
+        news,
+        currentPage: page,
+        totalPages,
+        limit,
+        search: q,
+        success: req.query.success,
+        error: req.query.error
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Lỗi server khi tìm kiếm tin tức");
+    }
+  }
+  
 
 }
 
