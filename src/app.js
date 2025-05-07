@@ -54,6 +54,7 @@ const cartRoutes = require('./routes/cart');
 const checkoutRoutes = require('./routes/checkout');
 const orderRoutes = require('./routes/order');
 const paymentRoutes = require('./routes/payment.routes');
+const chatbotRoutes = require('./routes/chatbot')
 
 app.use('/', indexRoutes);
 app.use('/admin', adminRoutes);
@@ -68,6 +69,7 @@ app.use('/cart', cartRoutes);
 app.use('/checkout', checkoutRoutes);
 app.use('/orders', orderRoutes);
 app.use('/payment', paymentRoutes);
+app.use('/chatbot', chatbotRoutes);
 
 // Khởi động server
 const PORT = process.env.PORT || 3000;

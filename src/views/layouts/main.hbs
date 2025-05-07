@@ -142,6 +142,20 @@
       </div>
     </div>
 
+     <!-- Nút bật/tắt chat -->
+    <button id="chat-toggle-btn">💬 Chatbot</button>
+
+    <!-- Hộp chat -->
+    <div id="chat-container" class="hidden">
+      <div id="chat-messages"></div>
+      <div id="chat-input">
+        <input type="text" id="user-input" placeholder="Gửi tin nhắn..." />
+        <button id="send-btn">Gửi</button>
+      </div>
+    </div>
+
+
+    <script src="/js/chatbot.js"></script>
 
     {{> header}}
     {{{body}}}
