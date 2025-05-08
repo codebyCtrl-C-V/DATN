@@ -54,7 +54,7 @@ const cartRoutes = require('./routes/cart');
 const checkoutRoutes = require('./routes/checkout');
 const orderRoutes = require('./routes/order');
 const paymentRoutes = require('./routes/payment.routes');
-const chatbotRoutes = require('./routes/chatbot')
+const chatbotRoutes = require('./routes/chatbot');
 
 app.use('/', indexRoutes);
 app.use('/admin', adminRoutes);
