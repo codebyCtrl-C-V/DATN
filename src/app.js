@@ -40,6 +40,17 @@ app.use(checkLoginMiddleware);
 const getCategories = require('./middleware/getCategories');
 app.use(getCategories);
 
+//import session
+const session = require('express-session');
+const dotenv = require('dotenv');
+dotenv.config();
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 3600000 }, // 1 giờ
+}));
+
 // Import routes
 const indexRoutes = require('./routes/index');
 const adminRoutes = require('./routes/admin');

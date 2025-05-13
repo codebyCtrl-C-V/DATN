@@ -4,22 +4,37 @@ const sendBtn = document.getElementById("send-btn");
 
 // Hàm thêm tin nhắn vào khung chat
 function formatMessage(text) {
-  // Nếu có các dòng bắt đầu bằng "- ", xử lý thành danh sách
-  if (text.includes("- ")) {
-    const lines = text.split("\n").filter(line => line.trim() !== "");
-    const listItems = lines.map(line => {
-      if (line.trim().startsWith("- ")) {
-        return `<li>${line.trim().substring(2)}</li>`;
-      } else {
-        return `<p>${line}</p>`;
-      }
-    });
-    return `<ul>${listItems.join("")}</ul>`;
-  }
+  // Chuyển các đoạn **in đậm** thành <strong>
+  text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
 
-  // Nếu không có dấu gạch đầu dòng, giữ nguyên và xuống dòng
-  return text.replace(/\n/g, "<br>");
+  // Tách đoạn văn thành các dòng
+  const lines = text.split("\n").filter(line => line.trim() !== "");
+
+  let formatted = "";
+  let inList = false;
+
+  lines.forEach((line, i) => {
+    if (line.trim().startsWith("* ")) {
+      if (!inList) {
+        formatted += "<ul>";
+        inList = true;
+      }
+      const item = line.trim().substring(2);
+      formatted += `<li>${item}</li>`;
+    } else {
+      if (inList) {
+        formatted += "</ul>";
+        inList = false;
+      }
+      formatted += `<p>${line.trim()}</p>`;
+    }
+  });
+
+  if (inList) formatted += "</ul>"; // đóng danh sách nếu còn dang dở
+
+  return formatted;
 }
+
 
 // Hàm thêm tin nhắn
 function addMessage(text, isUser) {
@@ -55,6 +70,18 @@ function loadChat() {
 }
 
 loadChat(); // gọi khi trang được load
+
+// xoá tin nhắn khi đăng xuất
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutBtn = document.getElementById("logout-btn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault(); // Ngăn chuyển trang ngay
+      localStorage.removeItem("chatMessages"); // Xoá tin nhắn đã lưu
+      window.location.href = "/logout"; // Chuyển trang sau khi xử lý
+    });
+  }
+});
 
 
 // Bắt sự kiện click nút Gửi

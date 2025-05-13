@@ -45,7 +45,7 @@
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="paymentMethod" id="online" value="online">
-                <label class="form-check-label" for="online">Thanh toán online (VNPay)</label>
+                <label class="form-check-label" for="online">Thanh toán online</label>
               </div>
             </div>
 
@@ -60,13 +60,13 @@
 <script>
 document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
+
     const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
     const totalAmount = {{calculateTotal cartItems}};
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
     const address = document.getElementById('address').value;
-    
+
     if (paymentMethod === 'online') {
         try {
             const response = await fetch('/payment/create_payment_url', {
@@ -82,9 +82,10 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
                     customerAddress: address
                 })
             });
-            
+
             const data = await response.json();
             if (data.paymentUrl) {
+                // Chuyển hướng đến cổng thanh toán
                 window.location.href = data.paymentUrl;
             } else {
                 alert('Không thể tạo URL thanh toán. Vui lòng thử lại sau.');
@@ -94,6 +95,7 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
             alert('Có lỗi xảy ra khi tạo URL thanh toán');
         }
     } else {
+        // Thanh toán khi nhận hàng, gửi form thông thường
         this.submit();
     }
 });
