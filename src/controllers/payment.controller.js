@@ -44,7 +44,7 @@ exports.createPaymentUrl = (req, res) => {
       return res.status(500).json({ error: "Cấu hình VNPAY không đầy đủ" });
     }
 
-    const createDate = moment().format("YYYYMMDDHHmmss");
+    const createDate = moment().tz('Asia/Ho_Chi_Minh').format("YYYYMMDDHHmmss");
     const expireDate = moment().add(15, "minutes").format("YYYYMMDDHHmmss");
 
     let vnp_Params = {
