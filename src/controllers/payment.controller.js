@@ -194,7 +194,21 @@ exports.vnpayReturn = async (req, res) => {
       // Xóa session cũ
       req.session.checkoutInfo = null;
 
-      return res.redirect("/orders");
+      return res.render("payment/success", {
+        layout: false, // Không dùng layout mặc định
+        code: "00",
+        message: "Thanh toán thành công!",
+        orderInfo: {
+          orderId: order.id,
+          txnRef: vnp_Params["vnp_TxnRef"],
+          amount: parseInt(vnp_Params["vnp_Amount"]) / 100,
+          bankCode: vnp_Params["vnp_BankCode"],
+          transactionNo: vnp_Params["vnp_TransactionNo"],
+          payDate: vnp_Params["vnp_PayDate"]
+        },
+        redirectUrl: "/orders", // URL để chuyển về trang orders
+        redirectDelay: 5000, // Tự động chuyển sau 5 giây
+      });
     } else {
       // Thanh toán thất bại
       res.render("payment/fail", {
