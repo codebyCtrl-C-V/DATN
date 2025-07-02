@@ -1,0 +1,847 @@
+[
+  {
+    "id": 1,
+     "title": "Sản phẩm cửa hàng - Giá cà rốt",
+    "content": "Cà rốt là một loại rau củ giàu vitamin A, tốt cho mắt và hệ tiêu hóa. Nó có thể được ăn sống hoặc nấu chín. Giá hiện tại là 29.000 VNĐ/ 0.5kg.",
+    "keywords": ["giá sản phẩm", "cà rốt", "rau củ", "vitamin A", "giá cả"],
+    "category": "general"
+  },
+  {
+    "id": 3,
+     "title": "Sản phẩm cửa hàng - Giá coca cola",
+    "content": "Nước giải khát Coca Cola có giá 12.000 VNĐ/ lon 500ml. Đây là một trong những loại nước giải khát phổ biến nhất trên thế giới, được yêu thích bởi hương vị ngọt ngào và sảng khoái. Giảm giá 20%",
+    "keywords": ["giá sản phẩm", "giá cả"],
+    "category": "general"
+  },
+  {
+    "id": 4,
+     "title": "Sản phẩm cửa hàng - Bông cải xanh - Rau củ bổ dưỡng",
+    "content": "Bông cải xanh là một loại rau xanh có hình dạng giống một cái cây thu nhỏ. Nó thuộc về loài thực vật được gọi là Brassica oleracea, cùng gia đình cải xoăn và súp lơ và đều chung họ rau cải. Giá: 42.000 VNĐ/400g.",
+    "keywords": [
+      "bông cải xanh",
+      "rau củ",
+      "giá sản phẩm",
+      "brassica oleracea"
+    ],
+    "category": "vegetables"
+  },
+  {
+    "id": 5,
+     "title": "Sản phẩm cửa hàng - Hành tây - Nguyên liệu chủ yếu",
+    "content": "Hành tây là loại củ có hình dạng giống bóng đèn tròn, còn được gọi là hành củ hay củ hành. Hành tây mọc dưới lòng đất, được trồng phổ biến trên toàn thế giới và có quan hệ gần với hẹ, tỏi và hành lá. Đây là nguyên liệu chủ yếu trong nhiều món ăn, được chế biến rất đa dạng, từ nướng, luộc, chiên, rang, xào, lăn bột hoặc thậm chí là ăn sống. Giá: 32.000 VNĐ/500g.",
+    "keywords": [
+      "hành tây",
+      "củ hành",
+      "nguyên liệu",
+      "rau củ",
+      "giá sản phẩm"
+    ],
+    "category": "vegetables"
+  },
+  {
+    "id": 6,
+     "title": "Sản phẩm cửa hàng - Rau mùi - Rau gia vị",
+    "content": "Rau mùi ăn kèm trong bữa ăn. Giá: 10.000 VNĐ/200g.",
+    "keywords": ["rau mùi", "rau gia vị", "giá sản phẩm"],
+    "category": "vegetables"
+  },
+  {
+    "id": 7,
+     "title": "Sản phẩm cửa hàng - Ớt chuông đỏ - Ớt ngọt Đà Lạt",
+    "content": "Ớt chuông được gọi là ớt ngọt vì nó không có vị cay gắt như ớt cay, được trồng nhiều ở Đà Lạt nên còn gọi là ớt Đà Lạt. Ớt chuông có nhiều màu: xanh, đỏ, vàng. Giá: 30.000 VNĐ/300g. Giảm giá 15%.",
+    "keywords": [
+      "ớt chuông",
+      "ớt ngọt",
+      "ớt đà lạt",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "vegetables"
+  },
+  {
+    "id": 8,
+     "title": "Sản phẩm cửa hàng - Ngô ngọt - Thơm ngon bổ dưỡng",
+    "content": "Ngô ngọt thơm ngon bổ dưỡng. Giá: 20.000 VNĐ/500g.",
+    "keywords": ["ngô", "ngô ngọt", "bổ dưỡng", "giá sản phẩm"],
+    "category": "vegetables"
+  },
+  {
+    "id": 9,
+     "title": "Sản phẩm cửa hàng - Củ cải trắng - Ngon ngọt",
+    "content": "Củ cải ngon, ngọt. Giá: 15.000 VNĐ/1kg.",
+    "keywords": ["củ cải trắng", "rau củ", "giá sản phẩm"],
+    "category": "vegetables"
+  },
+  {
+    "id": 10,
+     "title": "Sản phẩm cửa hàng - Mướp hương - An toàn không hóa chất",
+    "content": "Mướp là một loại mướp nhỏ, tươi ngon, có mùi hương đặc trưng và vị ngọt thanh. Được trồng trong môi trường an toàn, sản phẩm này không chứa hóa chất hay thuốc trừ sâu, mang lại sự an tâm cho người tiêu dùng. Với kích thước nhỏ gọn và chất lượng vượt trội, mướp hương baby rất phù hợp cho các món ăn bổ dưỡng và dễ chế biến. Giá: 28.000 VNĐ/300g. Giảm giá 15%.",
+    "keywords": [
+      "mướp",
+      "mướp hương",
+      "an toàn",
+      "không hóa chất",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "vegetables"
+  },
+  {
+    "id": 11,
+     "title": "Sản phẩm cửa hàng - Mướp đắng - Tốt cho sức khỏe",
+    "content": "Mướp đắng tốt cho sức khỏe. Giá: 30.000 VNĐ/300g.",
+    "keywords": ["mướp đắng", "sức khỏe", "giá sản phẩm"],
+    "category": "vegetables"
+  },
+  {
+    "id": 12,
+     "title": "Sản phẩm cửa hàng - Cà chua - Giàu Lycopene và vitamin",
+    "content": "Cà chua chứa rất nhiều giá trị dinh dưỡng tốt cho sức khỏe như Vitamin C, Vitamin A và đặc biệt loại quả này rất giàu Lycopene. Đây là một chất rất bổ dưỡng có trong cà chua chín. Chúng có vai trò đáng kể trong việc phòng ngừa các bệnh mãn tính như ung thư, bệnh tim mạch, loãng xương và bệnh tiểu đường. Cà chua càng đỏ thì càng chứa nhiều Lycopene. Cà chua rất giàu vitamin A, C, K, vitamin B6, kali, folate, thiamin, magiê, niacin, đồng và phốt pho, là những vi chất cần thiết để duy trì một sức khỏe tốt. Điều tuyệt vời hơn ở cà chua là chúng chứa rất ít cholesterol, chất béo bão hòa, natri và calo. Bạn có thể ăn cà chua sống kẹp với bánh mì, làm salad, nước sốt, sinh tố, thậm chí nấu súp. Giá: 39.000 VNĐ/500g.",
+    "keywords": [
+      "cà chua",
+      "lycopene",
+      "vitamin C",
+      "vitamin A",
+      "chống ung thư",
+      "giá sản phẩm"
+    ],
+    "category": "vegetables"
+  },
+  {
+    "id": 13,
+     "title": "Sản phẩm cửa hàng - Cà tím - Vua của các loại rau củ",
+    "content": "Cà tím được trồng để lấy quả và là một trong những loại nông sản được trồng nhiều trên thế giới. Thậm chí ở Ấn Độ, cà tím được xếp trong danh sách Vua của các loại rau củ về giá trị dinh dưỡng và mức độ ưa chuộng của nó. Giá: 27.000 VNĐ/400g.",
+    "keywords": ["cà tím", "vua rau củ", "dinh dưỡng", "giá sản phẩm"],
+    "category": "vegetables"
+  },
+  {
+    "id": 14,
+     "title": "Sản phẩm cửa hàng - Dừa tươi - Trái cây nhiệt đới",
+    "content": "Dừa tươi là loại trái cây nhiệt đới phổ biến, được yêu thích nhờ nước dừa ngọt thanh và cơm dừa béo ngậy. Nước dừa chứa nhiều khoáng chất như kali, magiê, rất tốt cho việc bù nước và tăng cường sức khỏe. Dừa có thể uống trực tiếp, làm sinh tố hoặc dùng cơm dừa trong các món tráng miệng. Giá: 15.000 VNĐ/1 quả.",
+    "keywords": [
+      "dừa",
+      "trái cây nhiệt đới",
+      "nước dừa",
+      "kali",
+      "magiê",
+      "giá sản phẩm"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 15,
+     "title": "Sản phẩm cửa hàng - Đu đủ chín - Giàu vitamin và enzyme",
+    "content": "Đu đủ chín có màu cam rực rỡ, vị ngọt thanh và chứa nhiều vitamin A, C, E cùng enzyme papain hỗ trợ tiêu hóa. Đây là loại trái cây bổ dưỡng, thường được ăn trực tiếp, làm sinh tố hoặc salad. Đu đủ còn tốt cho da và hệ miễn dịch. Giá: 25.000 VNĐ/1kg.",
+    "keywords": [
+      "đu đủ",
+      "vitamin A",
+      "vitamin C",
+      "enzyme papain",
+      "tiêu hóa",
+      "giá sản phẩm"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 16,
+     "title": "Sản phẩm cửa hàng - Vải - Trái cây mùa hè ngọt đậm",
+    "content": "Vải là loại trái cây mùa hè nổi tiếng với vị ngọt đậm đà, thịt quả mọng nước. Vải chứa nhiều vitamin C, chất xơ và chất chống oxy hóa, giúp tăng cường sức khỏe tim mạch và làm đẹp da. Có thể ăn tươi hoặc sấy khô. Giá: 45.000 VNĐ/1kg. Giảm giá 15%.",
+    "keywords": [
+      "vải",
+      "trái cây mùa hè",
+      "vitamin C",
+      "chống oxy hóa",
+      "tim mạch",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 17,
+     "title": "Sản phẩm cửa hàng - Cam - Nguồn vitamin C dồi dào",
+    "content": "Cam là nguồn cung cấp vitamin C dồi dào, có vị ngọt nhẹ hoặc chua thanh tùy loại. Cam giúp tăng cường hệ miễn dịch, hỗ trợ tiêu hóa và làm đẹp da. Ngoài ăn trực tiếp, cam còn được ép nước hoặc dùng làm mứt. Giá: 35.000 VNĐ/1kg.",
+    "keywords": [
+      "cam",
+      "vitamin C",
+      "miễn dịch",
+      "tiêu hóa",
+      "làm đẹp da",
+      "giá sản phẩm"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 18,
+     "title": "Sản phẩm cửa hàng - Sầu riêng - Vua của các loại trái cây",
+    "content": "Sầu riêng được mệnh danh là \"vua của các loại trái cây\" nhờ hương vị đậm đà, béo ngậy và mùi thơm đặc trưng. Dù mùi hơi khó chịu với một số người, sầu riêng rất giàu năng lượng, vitamin B, C và kali. Thích hợp ăn tươi hoặc làm kem, bánh. Giá: 90.000 VNĐ/1kg.",
+    "keywords": [
+      "sầu riêng",
+      "vua trái cây",
+      "vitamin B",
+      "vitamin C",
+      "kali",
+      "giá sản phẩm"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 19,
+     "title": "Sản phẩm cửa hàng - Thanh long - Ít calo, tốt cho tiêu hóa",
+    "content": "Thanh long có vỏ đỏ hoặc trắng, ruột trắng hoặc đỏ, vị ngọt nhẹ và chứa nhiều chất xơ, vitamin C. Đây là loại trái cây ít calo, hỗ trợ giảm cân, tốt cho tiêu hóa và làm đẹp da. Thường ăn tươi hoặc làm sinh tố. Giá: 30.000 VNĐ/1kg.",
+    "keywords": [
+      "thanh long",
+      "ít calo",
+      "giảm cân",
+      "chất xơ",
+      "vitamin C",
+      "tiêu hóa",
+      "giá sản phẩm"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 20,
+     "title": "Sản phẩm cửa hàng - Việt quất - Siêu thực phẩm chống oxy hóa",
+    "content": "Việt quất là loại trái cây nhỏ nhưng giàu chất chống oxy hóa, vitamin C và K. Có vị ngọt nhẹ xen chút chua, việt quất giúp cải thiện sức khỏe tim mạch, trí não và chống lão hóa. Thích hợp ăn tươi, làm bánh hoặc sinh tố. Giá: 80.000 VNĐ/200g. Giảm giá 20%.",
+    "keywords": [
+      "việt quất",
+      "chống oxy hóa",
+      "vitamin C",
+      "vitamin K",
+      "tim mạch",
+      "trí não",
+      "chống lão hóa",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 21,
+     "title": "Sản phẩm cửa hàng - Bơ - Chất béo lành mạnh",
+    "content": "Bơ có vị béo nhẹ, chứa nhiều chất béo lành mạnh, vitamin E, K và kali. Đây là loại trái cây lý tưởng cho người ăn kiêng, hỗ trợ sức khỏe tim mạch và làm đẹp da. Có thể ăn trực tiếp, làm sinh tố hoặc salad. Giá: 40.000 VNĐ/1kg.",
+    "keywords": [
+      "bơ",
+      "chất béo lành mạnh",
+      "vitamin E",
+      "vitamin K",
+      "kali",
+      "ăn kiêng",
+      "tim mạch",
+      "giá sản phẩm"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 22,
+     "title": "Sản phẩm cửa hàng - Táo - Giòn ngọt giàu chất xơ",
+    "content": "Táo có vị giòn ngọt, giàu chất xơ, vitamin C và chất chống oxy hóa. Táo giúp giảm cholesterol, hỗ trợ tiêu hóa và tốt cho sức khỏe tim mạch. Thường ăn tươi, làm nước ép hoặc bánh nướng. Giá: 60.000 VNĐ/1kg. Giảm giá 15%.  ",
+    "keywords": [
+      "táo",
+      "chất xơ",
+      "vitamin C",
+      "chống oxy hóa",
+      "cholesterol",
+      "tim mạch",
+      "giá sản phẩm",
+      "giảm giá",
+      "hết hàng"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 23,
+     "title": "Sản phẩm cửa hàng - Xoài - Ngọt đậm thơm ngon",
+    "content": "Xoài chín có vị ngọt đậm, thơm ngon, chứa nhiều vitamin A, C và chất xơ. Xoài tốt cho mắt, da và hệ miễn dịch. Có thể ăn tươi, làm sinh tố, kem hoặc nước ép. Giá: 35.000 VNĐ/1kg.  ",
+    "keywords": [
+      "xoài",
+      "vitamin A",
+      "vitamin C",
+      "chất xơ",
+      "mắt",
+      "da",
+      "miễn dịch",
+      "giá sản phẩm",
+      "hết hàng"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 24,
+     "title": "Sản phẩm cửa hàng - Kiwi - Chua ngọt giàu vitamin",
+    "content": "Kiwi có vỏ nâu, ruột xanh hoặc vàng, vị chua ngọt đặc trưng. Kiwi rất giàu vitamin C, E và chất xơ, hỗ trợ tiêu hóa, tăng cường miễn dịch và làm đẹp da. Thích hợp ăn tươi hoặc làm sinh tố. Giá: 70.000 VNĐ/1kg.  ",
+    "keywords": [
+      "kiwi",
+      "vitamin C",
+      "vitamin E",
+      "chất xơ",
+      "tiêu hóa",
+      "miễn dịch",
+      "làm đẹp da",
+      "giá sản phẩm",
+      "hết hàng"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 25,
+     "title": "Sản phẩm cửa hàng - Lựu - Chống viêm làm đẹp da",
+    "content": "Lựu có hạt đỏ mọng, vị ngọt chua, chứa nhiều chất chống oxy hóa, vitamin C và K. Lựu giúp cải thiện sức khỏe tim mạch, chống viêm và làm đẹp da. Thường ăn hạt hoặc ép lấy nước. Giá: 65.000 VNĐ/1kg.",
+    "keywords": [
+      "lựu",
+      "chống oxy hóa",
+      "vitamin C",
+      "vitamin K",
+      "tim mạch",
+      "chống viêm",
+      "làm đẹp da",
+      "giá sản phẩm"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 26,
+     "title": "Sản phẩm cửa hàng - Dứa thơm - Hỗ trợ tiêu hóa",
+    "content": "Dứa (thơm) có vị ngọt chua, chứa enzyme bromelain hỗ trợ tiêu hóa và nhiều vitamin C. Dứa tốt cho hệ miễn dịch và giảm viêm. Có thể ăn tươi, ép nước hoặc dùng trong món tráng miệng. Giá: 20.000 VNĐ/1 quả. Giảm giá 15%.",
+    "keywords": [
+      "dứa",
+      "thơm",
+      "bromelain",
+      "tiêu hóa",
+      "vitamin C",
+      "miễn dịch",
+      "giảm viêm",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 259999,
+     "title": "Sản phẩm cửa hàng - Đào ",
+    "content": "Đào có vỏ mỏng, thịt quả ngọt mềm, chứa vitamin A, C và chất xơ. Đào giúp làm đẹp da, hỗ trợ tiêu hóa và tăng cường sức khỏe mắt. Thích hợp ăn tươi hoặc làm mứt, bánh. Giá: 75.000 VNĐ/1kg. Giảm giá 0%.",
+    "keywords": [
+      "đào",
+      "vitamin A",
+      "vitamin C",
+      "chất xơ",
+      "tiêu hóa",
+      "làm đẹp da",
+      "sức khỏe mắt",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 2699999,
+     "title": "Sản phẩm cửa hàng - Nho ",
+    "content": "Nho có nhiều loại: xanh, đỏ, đen, vị ngọt thanh hoặc chua nhẹ. Nho chứa resveratrol – chất chống oxy hóa tốt cho tim mạch, cùng vitamin C và K. Thường ăn tươi, làm nước ép hoặc sấy khô thành nho khô. Giá: 80.000 VNĐ/1kg. Giảm giá 0%.",
+    "keywords": [
+      "nho",
+      "resveratrol",
+      "chống oxy hóa",
+      "tim mạch",
+      "vitamin C",
+      "vitamin K",
+      "nước ép",
+      "nho khô",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "fruits"
+  },
+  {
+    "id": 27,
+     "title": "Sản phẩm cửa hàng - Pepsi (330ml) - Nước giải khát sảng khoái",
+    "content": "Pepsi là loại nước giải khát có ga nổi tiếng với hương vị cola đậm đà, sảng khoái. Được đóng trong lon hoặc chai tiện lợi, Pepsi chứa đường và caffeine, mang lại cảm giác tươi mát, thích hợp uống lạnh hoặc dùng trong các bữa tiệc. Giá: 10.000 VNĐ/330ml. Giảm giá 0%.",
+    "keywords": [
+      "pepsi",
+      "nước giải khát",
+      "cola",
+      "caffeine",
+      "sảng khoái",
+      "bữa tiệc",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages"
+  },
+  {
+    "id": 28,
+     "title": "Sản phẩm cửa hàng - Chai Coca-Cola (500ml) - Nước ngọt kinh điển",
+    "content": "Coca-Cola là nước ngọt có ga kinh điển, có hương vị cola độc đáo, ngọt thanh và chút kích thích từ caffeine. Đóng trong chai nhựa tiện dụng, sản phẩm này rất phổ biến trên toàn thế giới, phù hợp để giải khát mọi lúc mọi nơi. Giá: 12.000 VNĐ/500ml. Giảm giá 20%.",
+    "keywords": [
+      "coca-cola",
+      "nước ngọt",
+      "cola",
+      "caffeine",
+      "giải khát",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 12000,
+    "sale": 20
+  },
+  {
+    "id": 29,
+     "title": "Sản phẩm cửa hàng - Fanta (330ml) - Hương cam tươi mát",
+    "content": "Fanta là nước ngọt có ga với hương cam tươi mát, màu sắc bắt mắt và vị ngọt dịu. Không chứa caffeine, Fanta là lựa chọn tuyệt vời cho những ai muốn thưởng thức đồ uống nhẹ nhàng, đặc biệt thích hợp cho trẻ em hoặc các buổi picnic. Giá: 10.000 VNĐ/330ml. Giảm giá 0%.",
+    "keywords": [
+      "fanta",
+      "nước ngọt",
+      "hương cam",
+      "không caffeine",
+      "giải khát",
+      "picnic",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 10000,
+    "sale": 0
+  },
+  {
+    "id": 30,
+     "title": "Sản phẩm cửa hàng - Nước kiwi (500ml) - Tăng cường miễn dịch",
+    "content": "Nước kiwi là đồ uống tự nhiên được ép từ quả kiwi tươi, cố vị chua ngọt đặc trưng. Giàu vitamin C và chất xơ, nước kiwi giúp tăng cường miễn dịch, hỗ trợ tiêu hóa và làm đẹp da. Thích hợp uống lạnh hoặc thêm đá. Giá: 25.000 VNĐ/500ml. Giảm giá 0%.",
+    "keywords": [
+      "nước kiwi",
+      "kiwi",
+      "vitamin C",
+      "chất xơ",
+      "miễn dịch",
+      "tiêu hóa",
+      "làm đẹp da",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 25000,
+    "sale": 0
+  },
+  {
+    "id": 31,
+     "title": "Sản phẩm cửa hàng - Sprite (330ml) - Hương chanh sảng khoái",
+    "content": "Sprite là nước ngọt có ga với hương chanh tươi mát, không chứa caffeine. Vị ngọt nhẹ và cảm giác sủi bọt giúp Sprite trở thành lựa chọn hoàn hảo để giải nhiệt trong ngày nóng, đặc biệt khi uống lạnh. Giá: 10.000 VNĐ/330ml. Giảm giá 20%.",
+    "keywords": [
+      "sprite",
+      "nước ngọt",
+      "hương chanh",
+      "không caffeine",
+      "giải nhiệt",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 10000,
+    "sale": 20
+  },
+  {
+    "id": 32,
+     "title": "Sản phẩm cửa hàng - Lon Coca-Cola (330ml) - Nước ngọt tiện lợi",
+    "content": "Coca-Cola lon là phiên bản nhỏ gọn của nước ngọt có ga nổi tiếng, hương vị cola đậm đà, sảng khoái. Với thiết kế lon tiện lợi, sản phẩm này dễ mang theo và phù hợp cho các bữa ăn nhanh hoặc khi di chuyển. Giá: 10.000 VNĐ/330ml. Giảm giá 0%.",
+    "keywords": [
+      "coca-cola",
+      "nước ngọt",
+      "cola",
+      "tiện lợi",
+      "giải khát",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 10000,
+    "sale": 0
+  },
+  {
+    "id": 33,
+     "title": "Sản phẩm cửa hàng - Nước ép táo (500ml) - Tốt cho tim mạch",
+    "content": "Nước ép táo được làm từ táo tươi, có vị ngọt thanh và hương thơm dịu nhẹ. Giàu vitamin C, chất xơ và chất chống oxy hóa, nước ép táo hỗ trợ tiêu hóa, tốt cho tim mạch và làn da. Uống lạnh hoặc thêm đá rất ngon. Giá: 28.000 VNĐ/500ml. Giảm giá 15%.",
+    "keywords": [
+      "nước ép táo",
+      "táo",
+      "vitamin C",
+      "chất xơ",
+      "chống oxy hóa",
+      "tim mạch",
+      "tiêu hóa",
+      "làn da",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 28000,
+    "sale": 15
+  },
+  {
+    "id": 35,
+     "title": "Sản phẩm cửa hàng - Nước dứa (500ml) - Hỗ trợ tiêu hóa",
+    "content": "Nước dứa (nước thơm) được ép từ dứa tươi, có vị ngọt chua hài hòa và hương thơm đặc trưng. Giàu vitamin C và enzyme bromelain, nước dứa hỗ trợ tiêu hóa, tăng cường miễn dịch và rất thích hợp để giải khát ngày hè. Giá: 25.000 VNĐ/500ml. Giảm giá 0%.",
+    "keywords": [
+      "nước dứa",
+      "dứa",
+      "bromelain",
+      "vitamin C",
+      "tiêu hóa",
+      "miễn dịch",
+      "giải khát",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 25000,
+    "sale": 0
+  },
+  {
+    "id": 36,
+     "title": "Sản phẩm cửa hàng - Nước chanh (500ml) - Giải độc cơ thể",
+    "content": "Nước chanh là đồ uống đơn giản nhưng sảng khoái, được làm từ chanh tươi, có vị chua nhẹ và ngọt tùy khẩu vị. Chứa nhiều vitamin C, nước chanh giúp giải độc cơ thể, tăng cường miễn dịch và làm đẹp da. Giá: 20.000 VNĐ/500ml. Giảm giá 0%.",
+    "keywords": [
+      "nước chanh",
+      "chanh",
+      "vitamin C",
+      "giải độc",
+      "miễn dịch",
+      "làm đẹp da",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 20000,
+    "sale": 0
+  },
+  {
+    "id": 37,
+     "title": "Sản phẩm cửa hàng - Nước dưa hấu (500ml) - Tốt cho tim mạch",
+    "content": "Nước dưa hấu được ép từ dưa hấu tươi, mang vị ngọt mát và màu đỏ bắt mắt. Loại nước này chứa lycopene, vitamin A, C, giúp cấp nước, chống oxy hóa và hỗ trợ sức khỏe tim mạch. Uống lạnh rất tuyệt vời. Giá: 23.000 VNĐ/500ml. Giảm giá 20%.",
+    "keywords": [
+      "nước dưa hấu",
+      "dưa hấu",
+      "lycopene",
+      "vitamin A",
+      "vitamin C",
+      "chống oxy hóa",
+      "tim mạch",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 23000,
+    "sale": 20
+  },
+  {
+    "id": 38,
+     "title": "Sản phẩm cửa hàng - Nước ép dâu tây (500ml) - Tốt cho da và mắt",
+    "content": "Nước ép dâu tây có hương vị ngọt ngào, chua nhẹ từ dâu tây tươi, giàu vitamin C và chất chống oxy hóa. Đồ uống này không chỉ ngon mà còn tốt cho da, mắt và hệ miễn dịch. Phù hợp làm thức uống giải khát hoặc tráng miệng. Giá: 30.000 VNĐ/500ml. Giảm giá 0%.",
+    "keywords": [
+      "nước ép dâu tây",
+      "dâu tây",
+      "vitamin C",
+      "chống oxy hóa",
+      "làn da",
+      "mắt",
+      "miễn dịch",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 30000,
+    "sale": 0
+  },
+  {
+    "id": 39,
+     "title": "Sản phẩm cửa hàng - Nước cam (500ml) - Tăng cường miễn dịch",
+    "content": "Nước cam được ép từ cam tươi, có vị ngọt hoặc chua thanh tùy loại. Là nguồn vitamin C dồi dào, nước cam giúp tăng cường miễn dịch, hỗ trợ tiêu hóa và làm đẹp da. Thích hợp uống vào buổi sáng hoặc bất kỳ lúc nào trong ngày. Giá: 27.000 VNĐ/500ml. Giảm giá 15%.",
+    "keywords": [
+      "nước cam",
+      "cam",
+      "vitamin C",
+      "miễn dịch",
+      "tiêu hóa",
+      "làm đẹp da",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "beverages",
+    "price": 27000,
+    "sale": 15
+  },
+  {
+    "id": 40,
+     "title": "Sản phẩm cửa hàng - Đường nâu (500g) - Hương vị tự nhiên",
+    "content": "Đường nâu là loại đường được chế biến từ mía, có màu nâu đặc trưng nhờ giữ lại mật mía. Vị ngọt dịu, thơm nhẹ, đường nâu thường được dùng trong nấu ăn, làm bánh, pha chế đồ uống hoặc ướp thực phẩm để tăng hương vị tự nhiên. Giá: 25.000 VNĐ/500g. Giảm giá 0%.",
+    "keywords": [
+      "đường nâu",
+      "mật mía",
+      "nấu ăn",
+      "làm bánh",
+      "pha chế",
+      "hương vị tự nhiên",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "ingredients",
+    "price": 25000,
+    "sale": 0
+  },
+  {
+    "id": 41,
+     "title": "Sản phẩm cửa hàng - Quế (100g) - Hỗ trợ sức khỏe",
+    "content": "Quế là gia vị được làm từ vỏ cây quế, có mùi thơm ấm áp và vị ngọt nhẹ. Quế không chỉ dùng để nêm nếm món ăn, làm bánh mà còn tốt cho sức khỏe nhờ chứa chất chống oxy hóa, hỗ trợ kiểm soát đường huyết và tăng cường tuần hoàn. Giá: 30.000 VNĐ/100g. Giảm giá 0%.",
+    "keywords": [
+      "quế",
+      "gia vị",
+      "chống oxy hóa",
+      "đường huyết",
+      "tuần hoàn",
+      "nấu ăn",
+      "làm bánh",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "ingredients",
+    "price": 30000,
+    "sale": 0
+  },
+  {
+    "id": 42,
+     "title": "Sản phẩm cửa hàng - Salad rau (200g) - Bữa ăn lành mạnh",
+    "content": "Salad rau là món ăn chế biến sẵn từ các loại rau xanh như xà lách, cải xanh, kết hợp với sốt nhẹ. Giàu chất xơ, vitamin và khoáng chất, salad rau là lựa chọn lý tưởng cho bữa ăn lành mạnh, hỗ trợ giảm cân và tốt cho tiêu hóa. Giá: 35.000 VNĐ/200g. Giảm giá 20%.",
+    "keywords": [
+      "salad rau",
+      "rau xanh",
+      "chất xơ",
+      "vitamin",
+      "khoáng chất",
+      "giảm cân",
+      "tiêu hóa",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "prepared_foods",
+    "price": 35000,
+    "sale": 20
+  },
+  {
+    "id": 43,
+     "title": "Sản phẩm cửa hàng - Salad trái cây (200g) - Món tráng miệng bổ dưỡng",
+    "content": "Salad trái cây được làm từ các loại trái cây tươi như táo, nho, dứa, trộn với sốt sữa chua hoặc mật ong. Ngọt thanh, giàu vitamin C và chất chống oxy hóa, món này thích hợp làm món tráng miệng hoặc bữa phụ bổ dưỡng. Giá: 40.000 VNĐ/200g. Giảm giá 0%.",
+    "keywords": [
+      "salad trái cây",
+      "trái cây",
+      "vitamin C",
+      "chống oxy hóa",
+      "tráng miệng",
+      "bữa phụ",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "prepared_foods",
+    "price": 40000,
+    "sale": 0
+  },
+  {
+    "id": 44,
+     "title": "Sản phẩm cửa hàng - Thịt lợn (500g) - Nguyên liệu phổ biến",
+    "content": "Thịt lợn là thực phẩm chế biến sẵn, được sơ chế sạch sẽ, thích hợp để nướng, xào, luộc hoặc làm nhân bánh. Giàu protein, vitamin B và kẽm, thịt lợn là nguyên liệu phổ biến trong bữa ăn gia đình. Giá: 70.000 VNĐ/500g. Giảm giá 0%.",
+    "keywords": [
+      "thịt lợn",
+      "protein",
+      "vitamin B",
+      "kẽm",
+      "nấu ăn",
+      "bữa ăn gia đình",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "meats",
+    "price": 70000,
+    "sale": 0
+  },
+  {
+    "id": 45,
+     "title": "Sản phẩm cửa hàng - Thịt gà (500g) - Lựa chọn lành mạnh",
+    "content": "Thịt gà được chế biến từ gà ta hoặc gà công nghiệp, ít chất béo, giàu protein và các axit amin thiết yếu. Thịt gà phù hợp để nấu súp, nướng, chiên hoặc làm gỏi, là lựa chọn lành mạnh cho chế độ ăn uống. Giá: 60.000 VNĐ/500g. Giảm giá 15%.",
+    "keywords": [
+      "thịt gà",
+      "protein",
+      "ít chất béo",
+      "axit amin",
+      "nấu ăn",
+      "lành mạnh",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "meats",
+    "price": 60000,
+    "sale": 15
+  },
+  {
+    "id": 46,
+     "title": "Sản phẩm cửa hàng - Thịt bò (500g) - Bổ dưỡng và cao cấp",
+    "content": "Thịt bò là loại thực phẩm cao cấp, giàu protein, sắt và vitamin B12, hỗ trợ phát triển cơ bắp và bổ máu. Được sơ chế sạch, thịt bò thích hợp để làm bít tết, xào, nướng hoặc nấu phở. Giá: 120.000 VNĐ/500g. Giảm giá 0%.",
+    "keywords": [
+      "thịt bò",
+      "protein",
+      "sắt",
+      "vitamin B12",
+      "cơ bắp",
+      "bổ máu",
+      "nấu ăn",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "meats",
+    "price": 120000,
+    "sale": 0
+  },
+  {
+    "id": 47,
+     "title": "Sản phẩm cửa hàng - Trứng (10 quả) - Nguyên liệu thiết yếu",
+    "content": "Trứng gà hoặc trứng vịt là thực phẩm chế biến sẵn, giàu protein, choline và các vi chất cần thiết cho cơ thể. Trứng có thể luộc, chiên, ốp la hoặc làm bánh, là nguyên liệu không thể thiếu trong gian bếp. Giá: 30.000 VNĐ/10 quả. Giảm giá 0%.",
+    "keywords": [
+      "trứng",
+      "protein",
+      "choline",
+      "vi chất",
+      "nấu ăn",
+      "làm bánh",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "ingredients",
+    "price": 30000,
+    "sale": 0
+  },
+  {
+    "id": 48,
+     "title": "Sản phẩm cửa hàng - Thịt xay (500g) - Tiện lợi và bổ dưỡng",
+    "content": "Thịt xay thường được làm từ thịt lợn, bò hoặc kết hợp, đã qua sơ chế để tiện sử dụng. Giàu protein, thịt xay phù hợp làm chả, nhân bánh, hoặc xào với rau củ, mang lại bữa ăn nhanh chóng và ngon miệng. Giá: 75.000 VNĐ/500g. Giảm giá 0%.",
+    "keywords": [
+      "thịt xay",
+      "protein",
+      "nấu ăn",
+      "chả",
+      "nhân bánh",
+      "rau củ",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "meats",
+    "price": 75000,
+    "sale": 0
+  },
+  {
+    "id": 49,
+     "title": "Sản phẩm cửa hàng - Đậu phụ (200g) - Protein thực vật",
+    "content": "Đậu phụ phomai là sản phẩm chế biến từ đậu nành, có vị béo nhẹ và kết cấu mềm mịn. Giàu protein thực vật và canxi, sản phẩm này thích hợp cho người ăn chay, có thể chiên, nướng hoặc ăn kèm sốt. Giá: 20.000 VNĐ/200g. Giảm giá 15%.",
+    "keywords": [
+      "đậu phụ",
+      "protein thực vật",
+      "canxi",
+      "ăn chay",
+      "chiên",
+      "nướng",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "ingredients",
+    "price": 20000,
+    "sale": 15
+  },
+  {
+    "id": 50,
+     "title": "Sản phẩm cửa hàng - Nho khô (200g) - Món ăn vặt bổ dưỡng",
+    "content": "Nho khô được làm từ nho tươi sấy khô, có vị ngọt đậm và hương thơm đặc trưng. Giàu chất xơ, sắt và chất chống oxy hóa, nho khô là món ăn vặt bổ dưỡng, dùng trong làm bánh hoặc trộn salad. Giá: 45.000 VNĐ/200g. Giảm giá 0%.",
+    "keywords": [
+      "nho khô",
+      "chất xơ",
+      "sắt",
+      "chống oxy hóa",
+      "ăn vặt",
+      "làm bánh",
+      "salad",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "ingredients",
+    "price": 45000,
+    "sale": 0
+  },
+  {
+    "id": 51,
+     "title": "Sản phẩm cửa hàng - Salad rau củ (200g) - Lựa chọn lành mạnh",
+    "content": "Salad rau củ kết hợp rau xanh và củ như cà rốt, dưa chuột, khoai tây, trộn với sốt nhẹ. Giàu vitamin, khoáng chất và chất xơ, món này hỗ trợ tiêu hóa, giảm cân và là lựa chọn tuyệt vời cho chế độ ăn lành mạnh. Giá: 38.000 VNĐ/200g. Giảm giá 0%.",
+    "keywords": [
+      "salad rau củ",
+      "rau xanh",
+      "chất xơ",
+      "vitamin",
+      "khoáng chất",
+      "tiêu hóa",
+      "giảm cân",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "prepared_foods",
+    "price": 38000,
+    "sale": 0
+  },
+  {
+    "id": 58,
+     "title": "Sản phẩm cửa hàng - Đu đủ (1 quả) - Ngon và bổ dưỡng",
+    "content": "Đu đủ có vị ngọt, thơm, bổ dưỡng, chứa nhiều vitamin A, C và chất xơ. Tốt cho tiêu hóa và sức khỏe mắt. Thích hợp ăn tươi hoặc làm sinh tố. Giá: 15.000 VNĐ/1 quả. Giảm giá 15%.",
+    "keywords": [
+      "đu đủ",
+      "vitamin A",
+      "vitamin C",
+      "chất xơ",
+      "tiêu hóa",
+      "sức khỏe mắt",
+      "sinh tố",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "fruits",
+    "price": 15000,
+    "sale": 15
+  },
+  {
+    "id": 60,
+     "title": "Sản phẩm cửa hàng - Chanh (1 quả) - Hương thơm tươi mát",
+    "content": "Chanh có hương thơm tươi mát, chứa nhiều vitamin C, hỗ trợ miễn dịch và giải độc cơ thể. Thích hợp để làm nước chanh, gia vị hoặc dùng trong nấu ăn. Giá: 5.000 VNĐ/1 quả. Giảm giá 0%.",
+    "keywords": [
+      "chanh",
+      "vitamin C",
+      "miễn dịch",
+      "giải độc",
+      "nước chanh",
+      "gia vị",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "fruits",
+    "price": 5000,
+    "sale": 0
+  },
+  {
+    "id": 61,
+     "title": "Sản phẩm cửa hàng - Na (1kg) - Thơm ngon và bổ dưỡng",
+    "content": "Na có vị thơm, ngon, chín mọng, chứa vitamin C và chất xơ, tốt cho sức khỏe. Thích hợp ăn tươi hoặc làm sinh tố. Giá: 39.000 VNĐ/1kg. Giảm giá 10%.",
+    "keywords": [
+      "na",
+      "vitamin C",
+      "chất xơ",
+      "sức khỏe",
+      "sinh tố",
+      "giá sản phẩm",
+      "giảm giá"
+    ],
+    "category": "fruits",
+    "price": 39000,
+    "sale": 10
+  }
+]

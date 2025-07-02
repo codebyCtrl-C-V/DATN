@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
             user: res.locals.user, // Giữ nguyên dữ liệu user từ middleware
             ...products,
             bestSellerProducts: bestSellerProducts.products,
-            newProducts: newProducts,
+            newProducts: newProducts.products,
             getNewsForHome: getNewsForHome,           
         });
     } catch (error) {

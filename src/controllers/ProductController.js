@@ -54,10 +54,15 @@ class ProductController {
       const products = await Product.findAll({
         order: [["updatedAt", "DESC"]],
         limit: 10,
-        raw: true,
+        //raw: true,
       });
 
-      return products;
+      const newProducts = products.map((product) => ({
+        ...product.toJSON(), // Chuyển Sequelize object về JSON
+        discountPrice: product.price * (1 - product.sale / 100), // Giảm giá
+      }));
+
+      return {products: newProducts};
     } catch (error) {
       console.error("Lỗi lấy sản phẩm mới:", error);
       return [];
@@ -110,18 +115,6 @@ class ProductController {
       res.status(500).send("Lỗi server");
     }
   }
-
-  //tạo sản phẩm
-  // async createProduct(req, res) {
-  //   try {
-  //     const { name, description, price, stock, category_id, image } = req.body;
-  //     const slug = slugify(name, { lower: true, strict: true });
-  //     const news = await News.create({ title, slug, content, image });
-  //   } catch (error) {
-  //     console.error("Lỗi tạo tin tức:", error);
-  //     res.status(500).json({ error: "Lỗi server" });
-  //   }
-  // }
 
   // lấy chi tiết sản phẩm
   async getProduct(req, res) {

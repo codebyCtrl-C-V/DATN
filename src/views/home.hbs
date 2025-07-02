@@ -560,6 +560,9 @@
           <div class="swiper-wrapper">
             {{#each newProducts}}
               <div class="product-item swiper-slide">
+                <span
+                  class="badge bg-success position-absolute m-3"
+                >{{this.sale}}%</span>
                 <figure>
                   <a href="/product/{{this.slug}}" title={{this.name}}>
                     <img
@@ -571,8 +574,10 @@
                 </figure>
                 <h3>{{this.name}}</h3>
                 <span class="price">
-                  {{this.price}}
-                  VND
+                  <del>{{this.price}} VND</del>
+                  <!-- Giá gốc -->
+                  <span>{{this.discountPrice}} VND</span>
+                  <!-- Giá đã giảm -->
                 </span>
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="input-group product-qty">
